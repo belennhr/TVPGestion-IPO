@@ -62,12 +62,14 @@
     <Compile Include="Views\ClientesPage.xaml.cs">
       <DependentUpon>ClientesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductosPage.xaml.cs">
       <DependentUpon>ProductosPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ProductoViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,7 +121,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Icons\lupaIcon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\addCircleIcon.png" />
   </ItemGroup>
@@ -141,11 +145,13 @@
     <Resource Include="Assets\Icons\usersIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\comidaIcon - Copia.png" />
     <Resource Include="Assets\Icons\comidaIcon.png" />
     <Resource Include="Assets\Icons\cruzIcon.png" />
     <Resource Include="Assets\Icons\homeIcon.png" />
     <Resource Include="Assets\Icons\infoCircleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\editarIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

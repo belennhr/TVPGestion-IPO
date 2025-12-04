@@ -42,7 +42,7 @@
         </ListBox>
 
         <!-- SideBar_config -->
-        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar_config" Margin="0,294,0,0" BorderThickness="0">
+        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar_config" Margin="0,294,0,0" BorderThickness="0" VerticalAlignment="Bottom">
             <ListBoxItem>
                 <StackPanel Orientation="Horizontal" Margin="3">
                     <Image Source="/Assets/Icons/infoCircleIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
