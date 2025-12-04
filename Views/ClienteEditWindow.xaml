@@ -1,0 +1,108 @@
+﻿<Window x:Class="TVPGestion_IPO.Views.ClienteEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TVPGestion_IPO.Views"
+        mc:Ignorable="d"
+        Title="ClienteEditWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock x:Name="txtEditarCliente" Grid.Row="0" Text="Editar Cliente" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <!-- Contenido en dos columnas -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Columna izquierda -->
+                <StackPanel x:Name="stackIzq" Grid.Column="0">
+                    <!-- Nombre -->
+                    <StackPanel x:Name="stackNombre" Margin="0,0,0,12">
+                        <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtNombre" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Apellidos -->
+                    <StackPanel x:Name="stackApellidos" Margin="0,0,0,12">
+                        <Label Content="Apellidos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtApellidos" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Apellidos, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Direcciones -->
+                    <StackPanel x:Name="stackDir" Margin="0,0,0,12">
+                        <Label Content="Direcciones" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtDirecciones" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding DireccionesString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Teléfonos -->
+                    <StackPanel x:Name="stacktlf" Margin="0,0,0,12">
+                        <Label Content="Teléfonos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtTelefonos" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding TelefonosString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Columna derecha -->
+                <StackPanel x:Name="stackDer" Grid.Column="2">
+                    <!-- Emails -->
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Emails" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtEmails" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding EmailsString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Alergias -->
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Alergias" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtAlergias" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding AlergiasString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Forma de Pago -->
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Forma de Pago" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtFormaPago" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Puntos Acumulados -->
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Puntos Acumulados" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtPuntos" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding PuntosAcumulados, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Botones -->
+        <StackPanel x:Name="btns" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36" Margin="0,0,10,0"
+                Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
+            <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" 
+                Background="#e9ecef" Click="BtnCancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
