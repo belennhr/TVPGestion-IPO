@@ -59,13 +59,21 @@
           CanUserAddRows="False"
           IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="" Width="60">
+                <DataGridTemplateColumn Header="" Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="/Assets/Icons/editarIcon.png" Width="40" Height="40"/>
+                            <Image Source="/Assets/Icons/editarIcon.png" Width="25" Height="25"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="/Assets/Icons/borrarIcon.png" Width="25" Height="25"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
                 <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="100"/>
                 <DataGridTextColumn Header="Subcategoría" Binding="{Binding Subcategoria}" Width="100"/>

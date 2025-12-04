@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using TVPGestion_IPO.Models;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace TVPGestion_IPO.Views
 {
@@ -53,6 +54,26 @@ namespace TVPGestion_IPO.Views
         private void BtnAddProducto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnDeleteProducto_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtener el producto seleccionado
+            var button = sender as Button;
+            var producto = button?.DataContext as ProductoViewModel;
+            if (producto == null) return;
+
+            var result = MessageBox.Show(
+                $"¿Estás seguro de que quieres eliminar el producto \"{producto.Nombre}\"?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                productosVM.Remove(producto);
+                productosView.Refresh();
+            }
         }
     }
 }

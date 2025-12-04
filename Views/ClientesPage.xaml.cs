@@ -65,5 +65,26 @@ namespace TVPGestion_IPO.Views
         {
 
         }
+
+        private void BtnDeleteCliente_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtener el cliente seleccionado
+            var button = sender as Button;
+            var cliente = button?.DataContext as ClienteViewModel;
+            if (cliente == null) return;
+
+            var result = MessageBox.Show(
+                $"¿Estás seguro de que quieres eliminar a {cliente.Nombre} {cliente.Apellidos}?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                clientesVM.Remove(cliente);
+                clientesView.Refresh();
+            }
+        }
+
     }
 }

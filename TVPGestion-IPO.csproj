@@ -153,5 +153,8 @@
   <ItemGroup>
     <Resource Include="Assets\Icons\editarIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\borrarIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

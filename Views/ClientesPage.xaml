@@ -59,10 +59,20 @@
                   CanUserAddRows="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="" Width="60">
+                <DataGridTemplateColumn x:Name="Editar" Header="" Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="/Assets/Icons/editarIcon.png" Width="40" Height="40"/>
+                            <Image Source="/Assets/Icons/editarIcon.png" Width="25" Height="25"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Transparent" BorderThickness="0" Padding="0"
+                                    Click="BtnDeleteCliente_Click">
+                                <Image Source="/Assets/Icons/borrarIcon.png" Width="25" Height="25"/>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
