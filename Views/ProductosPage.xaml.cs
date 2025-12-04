@@ -53,7 +53,6 @@ namespace TVPGestion_IPO.Views
 
         private void BtnAddProducto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
         }
 
         private void BtnDeleteProducto_Click(object sender, RoutedEventArgs e)
@@ -72,6 +71,19 @@ namespace TVPGestion_IPO.Views
             if (result == MessageBoxResult.Yes)
             {
                 productosVM.Remove(producto);
+                productosView.Refresh();
+            }
+        }
+
+        private void BtnEditProducto_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var producto = button?.DataContext as ProductoViewModel;
+            if (producto == null) return;
+
+            var editWindow = new ProductoEditWindow(producto);
+            if (editWindow.ShowDialog() == true)
+            {
                 productosView.Refresh();
             }
         }
