@@ -55,6 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Gestor.cs" />
+    <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Views\ClientesPage.xaml.cs">
+      <DependentUpon>ClientesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\navBar.xaml.cs">
+      <DependentUpon>navBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductosPage.xaml.cs">
+      <DependentUpon>ProductosPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +80,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ClientesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\navBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +118,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Icons\addCircleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\addIcon.png" />
+    <Resource Include="Assets\Icons\ajustesIcon.png" />
+    <Resource Include="Assets\Icons\ajustesPerfilIcon.png" />
+    <Resource Include="Assets\Icons\calendarioRelojIcon.png" />
+    <Resource Include="Assets\Icons\carritoIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\loginIcon.png" />
+    <Resource Include="Assets\Icons\logoutIcon.png" />
+    <Resource Include="Assets\Icons\relojIcon.png" />
+    <Resource Include="Assets\Icons\tarjetaIcon.png" />
+    <Resource Include="Assets\Icons\userCircleIcon.png" />
+    <Resource Include="Assets\Icons\userIcon.png" />
+    <Resource Include="Assets\Icons\UserListIcon.png" />
+    <Resource Include="Assets\Icons\usersIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\comidaIcon - Copia.png" />
+    <Resource Include="Assets\Icons\comidaIcon.png" />
+    <Resource Include="Assets\Icons\cruzIcon.png" />
+    <Resource Include="Assets\Icons\homeIcon.png" />
+    <Resource Include="Assets\Icons\infoCircleIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
