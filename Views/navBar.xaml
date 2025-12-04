@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TVPGestion_IPO.Views"
         mc:Ignorable="d"
-        Title="navBar" Height="450" Width="800">
+        Title="Menu" Height="450" Width="800">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,58 +13,101 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <!-- User Info -->
-        <StackPanel x:Name="panelUserInfo">
-            <Image x:Name="imgPerfil" Source="/Assets/Icons/UserCircleIcon.png" Stretch="Fill" Width="60" Height="60" HorizontalAlignment="Center"/>
-            <Label Content="Nombre Usuario" Margin="25,10,25,0" Width="100" Height="26" HorizontalAlignment="Center"/>
-        </StackPanel>
-
-        <!-- Sidebar -->
-        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar" Margin="0,120,0,140" BorderThickness="0">
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/comidaIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock Text="Productos" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/carritoIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock Text="Pedidos" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/usersIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock Text="Clientes" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ListBoxItem>
-        </ListBox>
-
-        <!-- SideBar_config -->
-        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar_config" Margin="0,294,0,0" BorderThickness="0" VerticalAlignment="Bottom">
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/infoCircleIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Ayuda"/></TextBlock>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/ajustesPerfilIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Editar perfil"/></TextBlock>
-                </StackPanel>
-            </ListBoxItem>
-            <ListBoxItem>
-                <StackPanel Orientation="Horizontal" Margin="3">
-                    <Image Source="/Assets/Icons/logoutIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
-                    <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Logout"/></TextBlock>
-                </StackPanel>
-            </ListBoxItem>
-        </ListBox>
-
+        <!-- Frame principal -->
         <Frame Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden" Background="#e9ecef"/>
+        <!-- Agrega margen para que la sombra sea visible -->
+        <Grid x:Name="navBar1" Background ="#FFE0F1FE" Grid.Column="0">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="1" Opacity="0.5"/>
+            </Grid.Effect>
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <!-- User Info -->
+            <StackPanel x:Name="panelUserInfo" Grid.Row="0" Background="Transparent">
+                <Image x:Name="imgPerfil" 
+                       Source="/Assets/Icons/UserCircleIcon.png" 
+                       Stretch="Fill" Width="60" Height="60" 
+                       HorizontalAlignment="Center"
+                       Margin=" 0,10,0,0"/>
+                <Label x:Name="lblNombreUsuario" Content="Nombre Usuario" Margin="0,0,0,0" Width="100" Height="26" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Sidebar -->
+            <ListBox SelectionMode="Single" 
+                     SelectionChanged="sidebar_SelectionChanged" 
+                     x:Name="sidebar" Grid.Row="1" Margin="0,10,0,5" 
+                     BorderThickness="0"
+                     Background="#FFE0F1FE">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel LastChildFill="False"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Margin" Value="5,0,0,0"/>
+                        <Setter Property="DockPanel.Dock" Value="Top"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#065386"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBoxItem x:Name="lbiProductos">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/comidaIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock Text="Productos" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem x:Name="lbiPedidos">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/carritoIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock Text="Pedidos" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem x:Name="lbiClientes">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/usersIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock Text="Clientes" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListBoxItem>
+                
+                <!--Opciones alineadas abajo-->
+                <ListBoxItem x:Name="lbiLogout" DockPanel.Dock="Bottom">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/logoutIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Logout"/></TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem x:Name="lbiEditPerfil" DockPanel.Dock="Bottom">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/ajustesPerfilIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Editar perfil"/></TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem x:Name="lbiaAyuda" DockPanel.Dock="Bottom">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <Image Source="/Assets/Icons/infoCircleIcon.png" Width="25" Height="25" Margin="0,0,10,0"/>
+                        <TextBlock VerticalAlignment="Center"><Run Language="es-es" Text="Ayuda"/></TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+
+        </Grid>
+
+        <!-- Frame principal -->
     </Grid>
 </Window>

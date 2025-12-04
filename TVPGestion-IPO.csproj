@@ -59,12 +59,18 @@
     <Compile Include="Models\Gestor.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Views\ClienteEditWindow.xaml.cs">
+      <DependentUpon>ClienteEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientesPage.xaml.cs">
       <DependentUpon>ClientesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductoEditWindow.xaml.cs">
+      <DependentUpon>ProductoEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductosPage.xaml.cs">
       <DependentUpon>ProductosPage.xaml</DependentUpon>
@@ -82,11 +88,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ClienteEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\navBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductoEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

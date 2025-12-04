@@ -1,6 +1,6 @@
 ﻿namespace TVPGestion_IPO.Views
 {
-    internal class ClienteViewModel
+    public class ClienteViewModel
     {
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
