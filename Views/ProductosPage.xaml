@@ -59,6 +59,7 @@
           CanUserAddRows="False"
           IsReadOnly="True">
             <DataGrid.Columns>
+                <!--Editar productos-->
                 <DataGridTemplateColumn Header="" Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -66,14 +67,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <!--Borrar Producto-->
                 <DataGridTemplateColumn Header="" Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="/Assets/Icons/borrarIcon.png" Width="25" Height="25"/>
+                            <Button Background="Transparent" BorderThickness="0" Padding="0"
+                    Click="BtnDeleteProducto_Click">
+                                    <Image Source="/Assets/Icons/borrarIcon.png" Width="25" Height="25"/>
+                                </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                <!--Campos especificos-->
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
                 <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="100"/>
                 <DataGridTextColumn Header="Subcategoría" Binding="{Binding Subcategoria}" Width="100"/>
