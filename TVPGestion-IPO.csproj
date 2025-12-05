@@ -60,6 +60,9 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="ViewModel\PedidoViewModel.cs" />
+    <Compile Include="Views\EditarPerfilWindow.xaml.cs">
+      <DependentUpon>EditarPerfilWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Editar\ClienteEditWindow.xaml.cs">
       <DependentUpon>ClienteEditWindow.xaml</DependentUpon>
     </Compile>
@@ -75,9 +78,6 @@
     </Compile>
     <Compile Include="Views\Editar\PedidoEditWindow.xaml.cs">
       <DependentUpon>PedidoEditWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Paginas\EditarPerfilPage.xaml.cs">
-      <DependentUpon>EditarPerfilPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Paginas\PedidosPage.xaml.cs">
       <DependentUpon>PedidosPage.xaml</DependentUpon>
@@ -101,6 +101,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\EditarPerfilWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Editar\ClienteEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,9 +121,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Editar\PedidoEditWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Paginas\EditarPerfilPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Paginas\PedidosPage.xaml">
