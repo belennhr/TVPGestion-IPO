@@ -18,7 +18,7 @@
 
         <!-- Contenido en dos columnas -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid>
+            <Grid x:Name="dos_columnas">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="30"/>

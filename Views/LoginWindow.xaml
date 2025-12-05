@@ -38,6 +38,7 @@
             <TextBox x:Name="credentialInput"
              Width="300" Height="35"
              BorderThickness="2"
+             
              VerticalContentAlignment="Center"
              FontSize="16" Margin="20,0,20,20" TabIndex="1"/>
         </Viewbox>

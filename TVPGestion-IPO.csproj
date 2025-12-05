@@ -60,30 +60,32 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="ViewModel\PedidoViewModel.cs" />
-    <Compile Include="Views\ClienteEditWindow.xaml.cs">
+    <Compile Include="Views\Editar\ClienteEditWindow.xaml.cs">
       <DependentUpon>ClienteEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientesPage.xaml.cs">
+    <Compile Include="Views\Paginas\ClientesPage.xaml.cs">
       <DependentUpon>ClientesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditarPerfilWindow.xaml.cs" />
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PedidoEditWindow.xaml.cs">
+    <Compile Include="Views\Editar\PedidoEditWindow.xaml.cs">
       <DependentUpon>PedidoEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PedidosPage.xaml.cs">
+    <Compile Include="Views\Paginas\EditarPerfilPage.xaml.cs">
+      <DependentUpon>EditarPerfilPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Paginas\PedidosPage.xaml.cs">
       <DependentUpon>PedidosPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductoEditWindow.xaml.cs">
+    <Compile Include="Views\Editar\ProductoEditWindow.xaml.cs">
       <DependentUpon>ProductoEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductosPage.xaml.cs">
+    <Compile Include="Views\Paginas\ProductosPage.xaml.cs">
       <DependentUpon>ProductosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ProductoViewModel.cs" />
@@ -99,35 +101,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ClienteEditWindow.xaml">
+    <Page Include="Views\Editar\ClienteEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClientesPage.xaml">
+    <Page Include="Views\Paginas\ClientesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EditarPerfilWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\navBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PedidoEditWindow.xaml">
+    <Page Include="Views\Editar\PedidoEditWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PedidosPage.xaml">
+    <Page Include="Views\Paginas\EditarPerfilPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProductoEditWindow.xaml">
+    <Page Include="Views\Paginas\PedidosPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Editar\ProductoEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProductosPage.xaml">
+    <Page Include="Views\Paginas\ProductosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,11 +14,11 @@
         </Grid.RowDefinitions>
 
         <!-- Titulo -->
-        <TextBlock Grid.Row="0" Text="Editar Pedido" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+        <TextBlock x:Name="txtEditarPedido" Grid.Row="0" Text="Editar Pedido" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
 
         <!-- Contenido en dos columnas -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid>
+        <ScrollViewer x:Name="campos" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Height="359">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="30"/>
@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Columna izquierda -->
-                <StackPanel Grid.Column="0">
+                <StackPanel x:Name="stackIzq" Grid.Column="0">
                     <!-- Id -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Id" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
@@ -84,7 +84,7 @@
                 </StackPanel>
 
                 <!-- Columna derecha -->
-                <StackPanel Grid.Column="2">
+                <StackPanel x:Name="stackDer" Grid.Column="2">
                     <!-- Productos -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Productos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
