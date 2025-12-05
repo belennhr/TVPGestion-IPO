@@ -1,24 +1,25 @@
-﻿using System.Windows;
+using System.Windows;
 
 namespace TVPGestion_IPO.Views
 {
-    public partial class ClienteEditWindow : Window
+    /// <summary>
+    /// Logica de interaccion para EditarPerfilWindow.xaml
+    /// </summary>
+    public partial class EditarPerfilWindow : Window
     {
-        public ClienteEditWindow(ClienteViewModel cliente)
+        public EditarPerfilWindow()
         {
             InitializeComponent();
-            this.DataContext = cliente;
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            MessageBox.Show("Perfil actualizado correctamente", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
             this.Close();
         }
     }

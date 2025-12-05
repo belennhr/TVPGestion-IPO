@@ -1,4 +1,9 @@
-﻿namespace TVPGestion_IPO.Views
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using TVPGestion_IPO.Models;
+
+namespace TVPGestion_IPO.Views
 {
     public class ClienteViewModel
     {
@@ -11,5 +16,8 @@
         public string FormaPago { get; set; }
         public int PuntosAcumulados { get; set; }
 
+        // Lista estática para ComboBox
+        public static List<string> FormasPagoDisponibles => 
+            Enum.GetNames(typeof(FormaPagoCliente)).ToList();
     }
 }

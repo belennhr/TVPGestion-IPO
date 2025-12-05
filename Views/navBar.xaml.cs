@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace TVPGestion_IPO.Views
 {
     /// <summary>
-    /// Lógica de interacción para navBar.xaml
+    /// Logica de interaccion para navBar.xaml
     /// </summary>
     public partial class navBar : Window
     {
@@ -33,14 +33,33 @@ namespace TVPGestion_IPO.Views
             }
             else if (sidebar.SelectedIndex == 1)
             {
-                // Pedidos (puedes crear una PedidosView si la tienes)
-                // navframe.Navigate(new PedidosView());
-                MessageBox.Show("Vista de Pedidos no implementada aún.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                //Pedidos
+                navframe.Navigate(new PedidosPage());
             }
             else if (sidebar.SelectedIndex == 2)
             {
                 // Clientes
                 navframe.Navigate(new ClientesPage());
+            }
+            else if (sidebar.SelectedIndex == 4)
+            {
+                // Editar Perfil
+                EditarPerfilWindow editWindow = new EditarPerfilWindow();
+                editWindow.ShowDialog();
+                sidebar.SelectedIndex = -1;
+            }
+            else if (sidebar.SelectedIndex == 5)
+            {
+                // Ayuda
+                MessageBox.Show("Seccion de Ayuda - En desarrollo", "Ayuda", MessageBoxButton.OK, MessageBoxImage.Information);
+                sidebar.SelectedIndex = -1;
+            }
+            else if (sidebar.SelectedIndex == 3)
+            {
+                // Logout
+                MessageBox.Show("Cerrando sesion...", "Logout", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                LoginWindow loginWindow = new LoginWindow();
             }
         }
     }

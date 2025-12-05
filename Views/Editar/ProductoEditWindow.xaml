@@ -14,10 +14,10 @@
         </Grid.RowDefinitions>
 
         <!-- Título -->
-        <TextBlock Grid.Row="0" Text="Editar Producto" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+        <TextBlock x:Name="txtEditarProducto" Grid.Row="0" Text="Editar Producto" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
 
         <!-- Contenido en dos columnas -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer x:Name="campos" Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -26,25 +26,28 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Columna izquierda -->
-                <StackPanel Grid.Column="0">
+                <StackPanel x:Name="stackIzq" Grid.Column="0">
                     <!-- Nombre -->
-                    <StackPanel Margin="0,0,0,12">
+                        <StackPanel x:Name="stackNombre" Margin="0,0,0,12">
                         <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtNombre" 
                                  Style="{StaticResource RoundedTextBox}"
                                  Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Categoría -->
-                    <StackPanel Margin="0,0,0,12">
+                    <!-- Categoría (ComboBox) -->
+                    <StackPanel x:Name="stackCat" Margin="0,0,0,12">
                         <Label Content="Categoría" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtCategoria" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbCategoria" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding CategoriasDisponibles}"
+                                  SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Subcategoría -->
-                    <StackPanel Margin="0,0,0,12">
+                    <StackPanel x:Name="stackSub" Margin="0,0,0,12">
                         <Label Content="Subcategoría" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtSubcategoria" 
                                  Style="{StaticResource RoundedTextBox}"
@@ -52,7 +55,7 @@
                     </StackPanel>
 
                     <!-- Precio -->
-                    <StackPanel Margin="0,0,0,12">
+                    <StackPanel x:Name="StackPrecio" Margin="0,0,0,12">
                         <Label Content="Precio" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtPrecio" 
                                  Style="{StaticResource RoundedTextBox}"
@@ -61,7 +64,7 @@
                 </StackPanel>
 
                 <!-- Columna derecha -->
-                <StackPanel Grid.Column="2">
+                <StackPanel x:Name="stackDer" Grid.Column="2">
                     <!-- Foto -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Foto (Ruta)" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
@@ -71,7 +74,7 @@
                     </StackPanel>
 
                     <!-- Alérgenos -->
-                    <StackPanel Margin="0,0,0,12">
+                    <StackPanel x:Name="stackAlergias" Margin="0,0,0,12">
                         <Label Content="Alérgenos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtAlergenos" 
                                  Style="{StaticResource RoundedTextBox}"
@@ -79,7 +82,7 @@
                     </StackPanel>
 
                     <!-- Ingredientes -->
-                    <StackPanel Margin="0,0,0,12">
+                    <StackPanel x:Name="stackIngredientes" Margin="0,0,0,12">
                         <Label Content="Ingredientes" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtIngredientes" 
                                  Style="{StaticResource RoundedTextBox}"
@@ -93,7 +96,7 @@
         </ScrollViewer>
 
         <!-- Botones -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <StackPanel x:Name="btns" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36" Margin="0,0,10,0"
                 Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
             <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" 

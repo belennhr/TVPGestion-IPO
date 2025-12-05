@@ -18,7 +18,7 @@
 
         <!-- Contenido en dos columnas -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid>
+            <Grid x:Name="dos_columnas">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="30"/>
@@ -78,12 +78,15 @@
                                  Text="{Binding AlergiasString, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Forma de Pago -->
+                    <!-- Forma de Pago (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Forma de Pago" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtFormaPago" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbFormaPago" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{ Binding FormasPagoDisponibles}"
+                                  SelectedItem="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Puntos Acumulados -->
@@ -99,10 +102,11 @@
 
         <!-- Botones -->
         <StackPanel x:Name="btns" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36" Margin="0,0,10,0"
-                Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
-            <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" 
+            <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" Margin="0,0,10,0"
                 Background="#e9ecef" Click="BtnCancelar_Click"/>
+			
+            <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36"
+                Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
         </StackPanel>
     </Grid>
 </Window>
