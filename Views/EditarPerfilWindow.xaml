@@ -1,0 +1,68 @@
+<Window x:Class="TVPGestion_IPO.Views.EditarPerfilWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Editar Perfil" Height="420" Width="700">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Editar Perfil" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtNombre" Text="Nombre Usuario" Height="32" Padding="8"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Email" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtEmail" Text="usuario@example.com" Height="32" Padding="8"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Telefono" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtTelefono" Text="123456789" Height="32" Padding="8"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Password Actual" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <PasswordBox x:Name="PwdActual" Height="32" Padding="8"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Nueva Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <PasswordBox x:Name="PwdNueva" Height="32" Padding="8"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Confirmar Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <PasswordBox x:Name="PwdConfirmar" Height="32" Padding="8"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36" Margin="0,0,10,0"
+                Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
+            <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" 
+                Background="#e9ecef" Click="BtnCancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
