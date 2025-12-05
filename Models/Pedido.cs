@@ -25,14 +25,17 @@ namespace TVPGestion_IPO.Models
                                                          // la hora a recibir a domicilio
         public string ClienteId { get; set; }
         public Dictionary<Producto, int> Productos { get; set; } // Producto y cantidad
-        public decimal ImporteTotal => CalcularTotal();
+        public decimal ImporteTotal => CalcularTotal(); //incluido coste de envio
         public string FormaPago { get; set; }
         public EstadoPedido Estado { get; set; }
-        //A domicilio
 
+
+        //A domicilio
         public string DireccionEntrega { get; set; } // Solo si RecogerEstablecimiento es false
         public decimal CosteEnvio { get; set; }
         public bool EnvioGratisCanjeado { get; set; } = false;
+
+
         private decimal CalcularTotal()
         {
             // Calcula el total sumando el precio de cada producto por su cantidad

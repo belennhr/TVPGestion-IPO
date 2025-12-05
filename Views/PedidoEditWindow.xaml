@@ -44,20 +44,26 @@
                                  Text="{Binding FechaHoraRealizacion, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Medio -->
+                    <!-- Medio (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Medio" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtMedio" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding Medio, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbMedio" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding MediosDisponibles}"
+                                  SelectedItem="{Binding Medio, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Modalidad -->
+                    <!-- Modalidad (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Modalidad" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtModalidad" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding Modalidad, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbModalidad" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding ModalidadesDisponibles}"
+                                  SelectedItem="{Binding Modalidad, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Fecha Recogida -->
@@ -106,12 +112,15 @@
                                  Text="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Estado -->
+                    <!-- Estado (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Estado" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtEstado" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding Estado, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbEstado" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding EstadosDisponibles}"
+                                  SelectedItem="{Binding Estado, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Direccion Entrega -->

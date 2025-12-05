@@ -78,12 +78,15 @@
                                  Text="{Binding AlergiasString, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Forma de Pago -->
+                    <!-- Forma de Pago (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Forma de Pago" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtFormaPago" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbFormaPago" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{ Binding FormasPagoDisponibles}"
+                                  SelectedItem="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Puntos Acumulados -->
