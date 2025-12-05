@@ -59,6 +59,7 @@ namespace TVPGestion_IPO.Views
                 // Logout
                 MessageBox.Show("Cerrando sesion...", "Logout", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
+                LoginWindow loginWindow = new LoginWindow();
             }
         }
     }

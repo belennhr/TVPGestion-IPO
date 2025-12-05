@@ -28,6 +28,7 @@ namespace TVPGestion_IPO.Views
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Los cambios han sido guardados correctamente", "Guardar", MessageBoxButton.OK, MessageBoxImage.Information);
             this.DialogResult = true;
             this.Close();
         }
