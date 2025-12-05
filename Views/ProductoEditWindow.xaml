@@ -35,12 +35,15 @@
                                  Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-                    <!-- Categoría -->
+                    <!-- Categoría (ComboBox) -->
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Categoría" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtCategoria" 
-                                 Style="{StaticResource RoundedTextBox}"
-                                 Text="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="CmbCategoria" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding CategoriasDisponibles}"
+                                  SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!-- Subcategoría -->
