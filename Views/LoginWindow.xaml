@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TVPGestion_IPO.Views"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="Grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
@@ -32,7 +32,7 @@
 
         </Viewbox>
         <Viewbox Grid.Row="9" Grid.Column="1" Stretch="Uniform">
-            <Button x:Name="LoginBtn" Content="Iniciar Sesión" Grid.Row="9" Grid.Column="1" Margin="60,5,60,5" FontSize="9" BorderThickness="1,1,1,1" TabIndex="3"/>
+            <Button x:Name="LoginBtn" Content="Iniciar Sesión" Grid.Row="9" Grid.Column="1" Margin="60,5,60,5" FontSize="9" BorderThickness="1,1,1,1" TabIndex="3" Click="Button_Click"/>
         </Viewbox>
         <Viewbox Grid.Row="4" Grid.Column="1" Stretch="Uniform">
             <TextBox x:Name="credentialInput"
@@ -47,13 +47,17 @@
                  PasswordChar="*"
                  BorderThickness="2"
                  VerticalContentAlignment="Center"
-                 FontSize="16" Margin="20,0,20,20" IsEnabled="False" TabIndex="2"/>
+                 FontSize="16" Margin="20,0,20,20" TabIndex="2"/>
         </Viewbox>
         <Viewbox Grid.Row="3" Grid.Column="1">
             <Label Content="Usuario:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="22" FontWeight="Bold" Margin="0,0,200,0"/>
         </Viewbox>
         <Viewbox Grid.Row="6" Grid.Column="1">
             <Label Content="Contraseña:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="22" FontWeight="Bold" Margin="0,0,200,0"/>
+        </Viewbox>
+        <Viewbox Grid.Row="8" Grid.Column="1">
+            <Label x:Name="errorMsg" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="11" FontWeight="Bold" Content="" Background="#00000000" Foreground="#FFDC3545"/>
+
         </Viewbox>
 
 
