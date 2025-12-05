@@ -72,6 +72,9 @@
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductoAddWindow.xaml.cs">
+      <DependentUpon>ProductoAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductoEditWindow.xaml.cs">
       <DependentUpon>ProductoEditWindow.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\navBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductoAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
