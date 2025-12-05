@@ -53,13 +53,6 @@ namespace TVPGestion_IPO.Views
 
         private void BtnAddProducto_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var addWindow = new ProductoAddWindow();
-            if (addWindow.ShowDialog() == true)
-            {
-                productosVM.Add(addWindow.nuevoProducto);
-                productosView.Refresh();
-            }
-
         }
 
         private void BtnDeleteProducto_Click(object sender, RoutedEventArgs e)
