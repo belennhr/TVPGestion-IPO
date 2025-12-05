@@ -59,6 +59,7 @@
     <Compile Include="Models\Gestor.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="ViewModel\PedidoViewModel.cs" />
     <Compile Include="Views\ClienteEditWindow.xaml.cs">
       <DependentUpon>ClienteEditWindow.xaml</DependentUpon>
     </Compile>
@@ -68,6 +69,12 @@
     <Compile Include="ViewModel\ClienteViewModel.cs" />
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PedidoEditWindow.xaml.cs">
+      <DependentUpon>PedidoEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PedidosPage.xaml.cs">
+      <DependentUpon>PedidosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductoEditWindow.xaml.cs">
       <DependentUpon>ProductoEditWindow.xaml</DependentUpon>
@@ -98,6 +105,12 @@
     </Page>
     <Page Include="Views\navBar.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PedidoEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PedidosPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductoEditWindow.xaml">

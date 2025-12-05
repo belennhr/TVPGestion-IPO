@@ -33,9 +33,8 @@ namespace TVPGestion_IPO.Views
             }
             else if (sidebar.SelectedIndex == 1)
             {
-                // Pedidos (puedes crear una PedidosView si la tienes)
-                // navframe.Navigate(new PedidosView());
-                MessageBox.Show("Vista de Pedidos no implementada aún.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                //Pedidos
+                navframe.Navigate(new PedidosPage());
             }
             else if (sidebar.SelectedIndex == 2)
             {
