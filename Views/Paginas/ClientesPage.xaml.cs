@@ -54,7 +54,12 @@ namespace TVPGestion_IPO.Views
 
         private void BtnAddCliente_Click(object sender, RoutedEventArgs e)
         {
-
+            var addWindow = new ClienteAddWindow();
+            if (addWindow.ShowDialog() == true)
+            {
+                clientesVM.Add(addWindow.nuevoCliente);
+                clientesView.Refresh();
+            }
         }
 
         private void BtnDeleteCliente_Click(object sender, RoutedEventArgs e)

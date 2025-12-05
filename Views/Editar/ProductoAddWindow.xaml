@@ -1,0 +1,106 @@
+﻿<Window x:Class="TVPGestion_IPO.Views.ProductoAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TVPGestion_IPO.Views"
+        mc:Ignorable="d"
+        Title="ProductoAddWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock x:Name="txtAñadirProducto" Grid.Row="0" Text="Añadir Producto" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <!-- Contenido en dos columnas -->
+        <ScrollViewer x:Name="campos" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Columna izquierda -->
+                <StackPanel x:Name="stackIzq" Grid.Column="0">
+                    <!-- Nombre -->
+                    <StackPanel x:Name="stackNombre" Margin="0,0,0,12">
+                        <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtNombre" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Categoría (ComboBox) -->
+                    <StackPanel x:Name="stackCat" Margin="0,0,0,12">
+                        <Label Content="Categoría" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <ComboBox x:Name="CmbCategoria" 
+                                  Height="36"
+                                  FontSize="14"
+                                  VerticalContentAlignment="Center"
+                                  ItemsSource="{Binding CategoriasDisponibles}"
+                                  SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Subcategoría -->
+                    <StackPanel x:Name="stackSub" Margin="0,0,0,12">
+                        <Label Content="Subcategoría" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtSubcategoria" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Subcategoria, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Precio -->
+                    <StackPanel x:Name="StackPrecio" Margin="0,0,0,12">
+                        <Label Content="Precio" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtPrecio" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Precio, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Columna derecha -->
+                <StackPanel x:Name="stackDer" Grid.Column="2">
+                    <!-- Foto -->
+                    <StackPanel Margin="0,0,0,12">
+                        <Label Content="Foto (Ruta)" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtFoto" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding Foto, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Alérgenos -->
+                    <StackPanel x:Name="stackAlergias" Margin="0,0,0,12">
+                        <Label Content="Alérgenos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtAlergenos" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 Text="{Binding AlergenosString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!-- Ingredientes -->
+                    <StackPanel x:Name="stackIngredientes" Margin="0,0,0,12">
+                        <Label Content="Ingredientes" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <TextBox x:Name="TxtIngredientes" 
+                                 Style="{StaticResource RoundedTextBox}"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 Height="80"
+                                 Text="{Binding IngredientesString, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Botones -->
+        <StackPanel x:Name="btns" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36" Margin="0,0,10,0"
+                Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
+            <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" 
+                Background="#e9ecef" Click="BtnCancelar_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
