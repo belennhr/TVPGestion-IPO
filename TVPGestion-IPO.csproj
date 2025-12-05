@@ -109,6 +109,7 @@
     </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\EditarPerfilWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
