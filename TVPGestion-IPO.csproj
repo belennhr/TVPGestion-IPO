@@ -63,8 +63,14 @@
     <Compile Include="Views\EditarPerfilWindow.xaml.cs">
       <DependentUpon>EditarPerfilWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Editar\ClienteAddWindow.xaml.cs">
+      <DependentUpon>ClienteAddWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Editar\ClienteEditWindow.xaml.cs">
       <DependentUpon>ClienteEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editar\ProductoAddWindow.xaml.cs">
+      <DependentUpon>ProductoAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Paginas\ClientesPage.xaml.cs">
       <DependentUpon>ClientesPage.xaml</DependentUpon>
@@ -105,7 +111,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Editar\ClienteAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Editar\ClienteEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Editar\ProductoAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
