@@ -25,45 +25,63 @@
                 <StackPanel Grid.Column="0">
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtNombre" Text="Nombre Usuario" Height="32" Padding="8"/>
+                        <TextBox x:Name="TxtNombre" Text="Nombre Usuario" 
+                                 Height="32" Padding="8"
+                                 Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Email" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtEmail" Text="usuario@example.com" Height="32" Padding="8"/>
+                        <TextBox x:Name="TxtEmail" 
+                                 Text="usuario@example.com" 
+                                 Height="32" Padding="8"
+                                 Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Telefono" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <TextBox x:Name="TxtTelefono" Text="123456789" Height="32" Padding="8"/>
+                        <TextBox x:Name="TxtTelefono" 
+                                 Text="123456789" Height="32" Padding="8"
+                                 Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Password Actual" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdActual" Height="32" Padding="8"/>
+                        <PasswordBox x:Name="PwdActual" Height="32" Padding="8"
+                                     Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Nueva Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdNueva" Height="32" Padding="8"/>
+                        <PasswordBox x:Name="PwdNueva" Height="32" Padding="8"
+                                     Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Confirmar Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdConfirmar" Height="32" Padding="8"/>
+                        <PasswordBox x:Name="PwdConfirmar" Height="32" Padding="8"
+                                     Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
 
+        <!-- Botones -->
         <StackPanel x:Name="btns" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button x:Name="BtnCancelar" Content="Cancelar" Width="100" Height="36" Margin="0,0,10,0"
-        Background="#e9ecef" Click="BtnCancelar_Click"/>
+        Background="#e9ecef" 
+        Foreground="#212529" FontWeight="Bold"
+        BorderBrush="#e9ecef"
+        Style="{StaticResource RoundedButton}"
+        Click="BtnCancelar_Click"/>
 
             <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Height="36"
-        Background="#065386" Foreground="White" FontWeight="Bold" Click="BtnGuardar_Click"/>
+        Background="#065386" Foreground="White" FontWeight="Bold" 
+        BorderBrush="#065386" BorderThickness="4"
+        Style="{StaticResource RoundedButton}"
+        Click="BtnGuardar_Click"/>
         </StackPanel>
     </Grid>
 </Window>

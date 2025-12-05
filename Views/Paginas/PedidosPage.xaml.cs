@@ -51,32 +51,6 @@ namespace TVPGestion_IPO.Views
             pedidosView.Refresh();
         }
 
-        private void BtnAddPedido_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var nuevo = new PedidoViewModel
-            {
-                Id = "P" + (pedidosVM.Count + 1).ToString("D3"),
-                FechaHoraRealizacion = DateTime.Now.ToString("yyyy-MM-dd HH:mm"),
-                Medio = "EnLocal",
-                Modalidad = "RecogerAhora",
-                ClienteId = "",
-                ProductosString = "",
-                ImporteTotal = 0m,
-                FormaPago = "",
-                Estado = "EnElaboracion",
-                DireccionEntrega = "",
-                CosteEnvio = 0m,
-                PuntosGanados = 0
-            };
-
-            var editWindow = new PedidoEditWindow(nuevo);
-            if (editWindow.ShowDialog() == true)
-            {
-                pedidosVM.Add(nuevo);
-                pedidosView.Refresh();
-            }
-        }
-
         private void BtnDeletePedido_Click(object sender, RoutedEventArgs e)
         {
             // Obtener el pedido seleccionado

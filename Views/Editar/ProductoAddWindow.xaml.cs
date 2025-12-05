@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,6 +40,30 @@ namespace TVPGestion_IPO.Views
         {
             this.DialogResult = false;
             this.Close();
+        }
+
+        private void TxtPrecio_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            
+            // Permite números, un solo separador decimal (coma o punto según cultura)
+            string text = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+            
+            // Regex que permite números decimales positivos
+            Regex regex = new Regex(@"^[0-9]*[" + Regex.Escape(separadorDecimal) + @"]?[0-9]*$");
+            
+            // Si no coincide con el patrón, cancela la entrada
+            e.Handled = !regex.IsMatch(text);
+        }
+
+        private void TxtPrecio_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // Permite teclas de control (Backspace, Delete, Tab, etc.)
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

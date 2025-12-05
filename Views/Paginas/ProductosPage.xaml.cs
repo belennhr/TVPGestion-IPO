@@ -25,8 +25,8 @@ namespace TVPGestion_IPO.Views
             // Ejemplo de datos
             productosVM = new ObservableCollection<ProductoViewModel>
             {
-                new ProductoViewModel { Nombre = "Pizza Margarita", Categoria = "Plato", Subcategoria = "Clásica", Foto = "/Assets/Icons/comidaIcon.png", Precio = 8.99m, AlergenosString = "Gluten, Lácteos", IngredientesString = "Tomate, Queso, Albahaca" },
-                new ProductoViewModel { Nombre = "Hamburguesa", Categoria = "Plato", Subcategoria = "Especial", Foto = "/Assets/Icons/comidaIcon.png", Precio = 6.99m, AlergenosString = "Gluten", IngredientesString = "Carne, Queso, Pan" },
+                new ProductoViewModel { Nombre = "Pizza Margarita", Categoria = "Plato", Subcategoria = "Clásica", Foto = "/Assets/Icons/comidaIcon.png", Precio = "8.99", AlergenosString = "Gluten, Lácteos", IngredientesString = "Tomate, Queso, Albahaca" },
+                new ProductoViewModel { Nombre = "Hamburguesa", Categoria = "Plato", Subcategoria = "Especial", Foto = "/Assets/Icons/comidaIcon.png", Precio = "6.99", AlergenosString = "Gluten", IngredientesString = "Carne, Queso, Pan" },
                 // ... más productos
             };
 
