@@ -8,55 +8,70 @@
         Title="LoginWindow" Height="450" Width="800">
     <Grid x:Name="Grid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="48*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="53*"/>
             <ColumnDefinition Width="54*"/>
             <ColumnDefinition Width="53*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle x:Name="LoginBackGround" Grid.Column="1" Grid.RowSpan="9
-                   " Grid.Row="1" Fill="#FFE0F1FE" RadiusX="10" RadiusY="10"/>
-        <Viewbox Grid.Row="1" Grid.Column="1">
+        <Rectangle x:Name="LoginBackGround" Grid.Column="1" Grid.RowSpan="11" Fill="#FFE0F1FE" RadiusX="10" RadiusY="10" Margin="0,48,0,48">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="Black" 
+                          BlurRadius="15" 
+                          ShadowDepth="5" 
+                          Opacity="0.3" 
+                          Direction="315"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Viewbox Grid.Column="1" Margin="0,48,0,0" Grid.RowSpan="2">
             <Label Content="Inicio de Sesión" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="22" FontWeight="Bold"/>
 
         </Viewbox>
-        <Viewbox Grid.Row="9" Grid.Column="1" Stretch="Uniform">
-            <Button x:Name="LoginBtn" Content="Iniciar Sesión" Grid.Row="9" Grid.Column="1" Margin="60,5,60,5" FontSize="9" BorderThickness="1,1,1,1" TabIndex="3" Click="Button_Click"/>
+        <Viewbox Grid.Row="8" Grid.Column="1" Stretch="Uniform" Margin="0,29,0,48" Grid.RowSpan="3">
+            <Button x:Name="LoginBtn" Content="Iniciar Sesión" Grid.Row="9" 
+                    Grid.Column="1" Margin="60,5,60,5" 
+                    FontSize="9" BorderThickness="1,3,1,3" TabIndex="3" 
+                    Padding="7" BorderBrush="#065386"
+                    FontWeight="Bold" Background="#065386"
+                    Foreground="White"
+                    Style="{StaticResource RoundedButton}"
+                    Click="Button_Click"/>
         </Viewbox>
-        <Viewbox Grid.Row="4" Grid.Column="1" Stretch="Uniform">
+        <Viewbox Grid.Row="4" Grid.Column="1" Stretch="Uniform" Margin="0,0,0,24" Grid.RowSpan="2">
             <TextBox x:Name="credentialInput"
-             Width="300" Height="35"
+             Width="270" Height="35"
              BorderThickness="2"
-             
+             Style="{StaticResource RoundedTextBox}"
              VerticalContentAlignment="Center"
              FontSize="16" Margin="20,0,20,20" TabIndex="1"/>
         </Viewbox>
-        <Viewbox Grid.Row="7" Grid.Column="1" Stretch="Uniform">
+        <Viewbox Grid.Row="6" Grid.Column="1" Stretch="Uniform" Margin="0,24,0,0" Grid.RowSpan="2">
             <PasswordBox x:Name="passwordInput"
-                 Width="300" Height="35"
+                 Width="270" Height="35"
                  PasswordChar="*"
                  BorderThickness="2"
                  VerticalContentAlignment="Center"
-                 FontSize="16" Margin="20,0,20,20" TabIndex="2"/>
+                 FontSize="16" Margin="20,0,20,20" TabIndex="2"
+                 Style="{StaticResource RoundedPasswordBox}"/>
         </Viewbox>
-        <Viewbox Grid.Row="3" Grid.Column="1">
-            <Label Content="Usuario:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="22" FontWeight="Bold" Margin="0,0,200,0"/>
+        <Viewbox Grid.Row="3" Grid.Column="1" Margin="0,0,0,48" Grid.RowSpan="2">
+            <Label Content="Usuario:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="24" FontWeight="Bold" Margin="0,0,200,0"/>
         </Viewbox>
-        <Viewbox Grid.Row="6" Grid.Column="1">
-            <Label Content="Contraseña:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="22" FontWeight="Bold" Margin="0,0,200,0"/>
+        <Viewbox Grid.Row="5" Grid.Column="1" Margin="0,24,0,0" Grid.RowSpan="2">
+            <Label Content="Contraseña:" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="24" FontWeight="Bold" Margin="0,0,200,0"/>
         </Viewbox>
-        <Viewbox Grid.Row="8" Grid.Column="1">
+        <Viewbox Grid.Row="7" Grid.Column="1" Margin="0,48,0,49" Grid.RowSpan="3">
             <Label x:Name="errorMsg" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="48" Width="270" FontSize="11" FontWeight="Bold" Content="" Background="#00000000" Foreground="#FFDC3545"/>
 
         </Viewbox>

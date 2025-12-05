@@ -36,5 +36,84 @@
             </Setter>
         </Style>
 
+        <!-- Estilo para PasswordBox redondeado -->
+        <Style x:Key="RoundedPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border BorderBrush="#CCCCCC" 
+                                BorderThickness="1" 
+                                CornerRadius="5" 
+                                Background="White">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="PART_ContentHost" 
+                                       Property="BorderBrush" 
+                                       Value="#065386"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Estilo para Button redondeado con sombra -->
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="shadowBorder"
+                                    CornerRadius="5"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="0,3,0,0">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Gray"
+                                                      BlurRadius="5"
+                                                      ShadowDepth="1"
+                                                      Opacity="0.5"
+                                                      Direction="270"/>
+                                </Border.Effect>
+                            </Border>
+                            <Border x:Name="border"
+                                    CornerRadius="5"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.03" ScaleY="1.03"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="shadowBorder" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.03" ScaleY="1.03"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

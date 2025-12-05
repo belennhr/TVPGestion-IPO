@@ -14,7 +14,7 @@
 
         <!-- Barra de busqueda -->
         <Grid Name="Search" HorizontalAlignment="Left" Margin="28,70,0,0" VerticalAlignment="Top" Width="220" Height="32">
-            <Border BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="5" Background="White">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White">
                 <TextBox x:Name="SearchBox"
                      Width="220"
                      Height="32"
@@ -40,8 +40,8 @@
                 Height="32"
                 HorizontalAlignment="Right"
                 Click="BtnAddPedido_Click"
-                Background="#e9ecef"
-                BorderBrush="#ccc"
+                Background="#e9ecef" BorderBrush="#ccc"
+                Style="{StaticResource RoundedButton}"
                 FontSize="14"
                 Margin="0,70,28,0" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
