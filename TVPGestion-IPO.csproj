@@ -67,6 +67,7 @@
       <DependentUpon>ClientesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ClienteViewModel.cs" />
+    <Compile Include="Views\EditarPerfilWindow.xaml.cs" />
     <Compile Include="Views\navBar.xaml.cs">
       <DependentUpon>navBar.xaml</DependentUpon>
     </Compile>
@@ -101,6 +102,9 @@
     </Page>
     <Page Include="Views\ClientesPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditarPerfilWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\navBar.xaml">
