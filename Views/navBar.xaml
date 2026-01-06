@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TVPGestion_IPO.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800">
+        Title="Menu" WindowState="Maximized" MinHeight="450" MinWidth="800">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,7 +19,11 @@
         </Grid.ColumnDefinitions>
 
         <!-- Frame principal -->
-        <Frame Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden" Background="#e9ecef" Grid.RowSpan="2"/>
+        <Frame Grid.Column="1" x:Name="navframe" 
+               NavigationUIVisibility="Hidden" 
+               Background="#e9ecef" Grid.RowSpan="2"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Stretch"/>
         <!-- Agrega margen para que la sombra sea visible -->
         <Grid x:Name="navBar1" Background ="#FFE0F1FE" Grid.Column="0" Grid.RowSpan="2">
             <Grid.Effect>

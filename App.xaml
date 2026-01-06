@@ -15,7 +15,7 @@
             <!-- Estilo para TextBox redondeado -->
             <Style x:Key="RoundedTextBox" TargetType="TextBox">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Padding" Value="2"/>
+                <Setter Property="Padding" Value="5"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Background" Value="Transparent"/>
