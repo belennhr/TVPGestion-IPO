@@ -11,9 +11,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
             <!-- Estilo para TextBox redondeado -->
             <Style x:Key="RoundedTextBox" TargetType="TextBox">
-                <Setter Property="Height" Value="40"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Padding" Value="2"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -23,18 +23,18 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="TextBox">
                             <Border BorderBrush="#CCCCCC" 
-                                    BorderThickness="1" 
-                                    CornerRadius="5" 
-                                    Background="White">
+                                BorderThickness="1" 
+                                CornerRadius="5" 
+                                Background="White">
                                 <ScrollViewer x:Name="PART_ContentHost" 
-                                            Margin="{TemplateBinding Padding}"
-                                            VerticalAlignment="Center"/>
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsFocused" Value="True">
                                     <Setter TargetName="PART_ContentHost" 
-                                           Property="BorderBrush" 
-                                           Value="#065386"/>
+                                       Property="BorderBrush" 
+                                       Value="#065386"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -44,7 +44,6 @@
 
             <!-- Estilo para PasswordBox redondeado -->
             <Style x:Key="RoundedPasswordBox" TargetType="PasswordBox">
-                <Setter Property="Height" Value="40"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Padding" Value="2"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -54,18 +53,18 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="PasswordBox">
                             <Border BorderBrush="#CCCCCC" 
-                                    BorderThickness="1" 
-                                    CornerRadius="5" 
-                                    Background="White">
+                                BorderThickness="1" 
+                                CornerRadius="5" 
+                                Background="White">
                                 <ScrollViewer x:Name="PART_ContentHost" 
-                                            Margin="{TemplateBinding Padding}"
-                                            VerticalAlignment="Center"/>
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsFocused" Value="True">
                                     <Setter TargetName="PART_ContentHost" 
-                                           Property="BorderBrush" 
-                                           Value="#065386"/>
+                                       Property="BorderBrush" 
+                                       Value="#065386"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -81,25 +80,25 @@
                         <ControlTemplate TargetType="Button">
                             <Grid>
                                 <Border x:Name="shadowBorder"
-                                        CornerRadius="5"
-                                        Background="{TemplateBinding Background}"
-                                        Margin="0,3,0,0">
+                                    CornerRadius="5"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="0,3,0,0">
                                     <Border.Effect>
                                         <DropShadowEffect Color="Gray"
-                                                          BlurRadius="5"
-                                                          ShadowDepth="1"
-                                                          Opacity="0.5"
-                                                          Direction="270"/>
+                                                      BlurRadius="5"
+                                                      ShadowDepth="1"
+                                                      Opacity="0.5"
+                                                      Direction="270"/>
                                     </Border.Effect>
                                 </Border>
                                 <Border x:Name="border"
-                                        CornerRadius="5"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    CornerRadius="5"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
                                     <ContentPresenter HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Margin="{TemplateBinding Padding}"/>
+                                                VerticalAlignment="Center"
+                                                Margin="{TemplateBinding Padding}"/>
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
@@ -123,3 +122,4 @@
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+    
