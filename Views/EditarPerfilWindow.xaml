@@ -26,7 +26,7 @@
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtNombre" Text="Nombre Usuario" 
-                                 Height="32" Padding="8"
+                                 Height="40" Padding="8"
                                  Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
 
@@ -34,14 +34,14 @@
                         <Label Content="Email" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtEmail" 
                                  Text="usuario@example.com" 
-                                 Height="32" Padding="8"
+                                 Height="40" Padding="8"
                                  Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Telefono" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                         <TextBox x:Name="TxtTelefono" 
-                                 Text="123456789" Height="32" Padding="8"
+                                 Text="123456789" Height="40" Padding="8"
                                  Style="{StaticResource RoundedTextBox}"/>
                     </StackPanel>
                 </StackPanel>
@@ -49,19 +49,19 @@
                 <StackPanel Grid.Column="2">
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Password Actual" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdActual" Height="32" Padding="8"
+                        <PasswordBox x:Name="PwdActual" Height="40" Padding="8"
                                      Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Nueva Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdNueva" Height="32" Padding="8"
+                        <PasswordBox x:Name="PwdNueva" Height="40" Padding="8"
                                      Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
 
                     <StackPanel Margin="0,0,0,12">
                         <Label Content="Confirmar Password" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                        <PasswordBox x:Name="PwdConfirmar" Height="32" Padding="8"
+                        <PasswordBox x:Name="PwdConfirmar" Height="40" Padding="8"
                                      Style="{StaticResource RoundedPasswordBox}"/>
                     </StackPanel>
                 </StackPanel>
