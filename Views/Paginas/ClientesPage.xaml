@@ -36,7 +36,7 @@
                  Stretch="Uniform" 
                  HorizontalAlignment="Left"
                  MaxHeight="60"
-                 Margin="28,10,28,10">
+                 Margin="40,10,28,10">
             <Label Content="Gestión de Clientes" 
                    FontSize="25" 
                    FontWeight="Bold"/>
@@ -57,22 +57,20 @@
                      MaxHeight="40"
                      HorizontalAlignment="Stretch">
                 <Grid Width="220" Height="32">
-                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,-216,0">
                         <TextBox x:Name="SearchBox"
-                                 Width="220"
                                  Height="32"
                                  VerticalContentAlignment="Center"
                                  Padding="32,0,5,0"
                                  FontSize="14"
                                  BorderThickness="0"
                                  Background="Transparent"
-                                 TextChanged="SearchBox_TextChanged"/>
+                                 TextChanged="SearchBox_TextChanged" Margin="30,0,9,-2"/>
                     </Border>
                     <materialDesign:PackIcon Kind="Search" Width="24" Height="24" 
                                              Foreground="Gray"
-                                             Margin="8,0,0,0"
-                                             VerticalAlignment="Center"
-                                             HorizontalAlignment="Left"/>
+                                             Margin="15,0,0,0"
+                                             VerticalAlignment="Center"/>
                 </Grid>
             </Viewbox>
 
@@ -83,8 +81,7 @@
                      MaxHeight="40"
                      HorizontalAlignment="Stretch">
                 <Button x:Name="BtnAddCliente"
-                        Width="137"
-                        Height="32"
+                        Width="137" Height="32"
                         Click="BtnAddCliente_Click"
                         Style="{StaticResource RoundedButton}"
                         Background="#e9ecef" 
@@ -105,7 +102,7 @@
         <!-- DataGrid de clientes -->
         <DataGrid Grid.Row="2"
                   x:Name="ClientesDataGrid"
-                  Margin="28,0,28,28"
+                  Margin="40,28,28,40"
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   AlternatingRowBackground="#F5F5F5"
@@ -186,7 +183,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <!--Borrar Clientes-->
                 <DataGridTemplateColumn Header="" Width="50" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
@@ -225,7 +222,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Apellidos" Binding="{Binding Apellidos}" Width="*" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -234,7 +231,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Direcciones" Binding="{Binding DireccionesString}" Width="1.5*" MinWidth="150">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -243,7 +240,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Teléfonos" Binding="{Binding TelefonosString}" Width="*" MinWidth="90">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -252,7 +249,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Emails" Binding="{Binding EmailsString}" Width="*" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -261,7 +258,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Alergias" Binding="{Binding AlergiasString}" Width="*" MinWidth="80">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -270,7 +267,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Forma de pago" Binding="{Binding FormaPago}" Width="*" MinWidth="90">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -279,7 +276,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <DataGridTextColumn Header="Puntos" Binding="{Binding PuntosAcumulados}" Width="Auto" MinWidth="60">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
