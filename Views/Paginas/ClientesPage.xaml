@@ -9,20 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ClientesPage" Background="White">
 
-    <Page.Resources>
-        <!-- Estilo para hacer las fuentes responsive -->
-        <Style x:Key="ResponsiveLabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="20"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page}, Converter={StaticResource WidthToFontSizeConverter}}" Value="Large">
-                    <Setter Property="FontSize" Value="28"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page}, Converter={StaticResource WidthToFontSizeConverter}}" Value="Medium">
-                    <Setter Property="FontSize" Value="25"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -56,8 +42,8 @@
                      StretchDirection="Both"
                      MaxHeight="40"
                      HorizontalAlignment="Stretch">
-                <Grid Width="220" Height="32">
-                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,-216,0">
+                <Grid Width="300" Height="32">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,0,0">
                         <TextBox x:Name="SearchBox"
                                  Height="32"
                                  VerticalContentAlignment="Center"
