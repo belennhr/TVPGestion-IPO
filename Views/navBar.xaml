@@ -10,142 +10,229 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*" MinWidth="150"/>
-            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="Auto" MinWidth="150" MaxWidth="250"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Frame principal -->
         <Frame Grid.Column="1" x:Name="navframe" 
                NavigationUIVisibility="Hidden" 
-               Background="#e9ecef" Grid.RowSpan="2"
-               VerticalAlignment="Top"
+               Background="#e9ecef"
+               VerticalAlignment="Stretch"
                HorizontalAlignment="Stretch"/>
-        <!-- Agrega margen para que la sombra sea visible -->
-        <Grid x:Name="navBar1" Background ="#FFE0F1FE" Grid.Column="0" Grid.RowSpan="2">
+
+        <!-- Barra de navegación lateral -->
+        <Grid x:Name="navBar1" Background="#FFE0F1FE" Grid.Column="0">
             <Grid.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="1" Opacity="0.5"/>
             </Grid.Effect>
 
-            <Viewbox Stretch="Uniform" StretchDirection="Both">
-                <Grid Width="150" Height="450">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <!-- User Info -->
-                    <StackPanel x:Name="panelUserInfo" Grid.Row="0" Background="Transparent">
+                <!-- User Info -->
+                <StackPanel x:Name="panelUserInfo" Grid.Row="0" Background="Transparent">
+                    <Viewbox MaxHeight="80" MaxWidth="80" Margin="0,10">
                         <materialDesign:PackIcon Kind="AccountCircleOutline" 
-                                 Width="70" Height="70" 
-                                 Margin="0,10,0,10"
-                                 HorizontalAlignment="Center"/>
-                        <Label x:Name="lblNombreUsuario" Content="Nombre Usuario" 
+                                                 Width="70" Height="70"
+                                                 HorizontalAlignment="Center"/>
+                    </Viewbox>
+                    <TextBlock x:Name="lblNombreUsuario" Text="Nombre Usuario" 
                                FontSize="14" FontWeight="Bold"
-                               HorizontalAlignment="Center"/>
-                        <Label x:Name="separator" 
-                               Content="_______________________________________________"
                                HorizontalAlignment="Center"
-                               Foreground="Gray"
-                               FontSize="12"/>
-                    </StackPanel>
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="5,0,5,10"/>
+                    <Separator Margin="0,0,0,10" Background="Gray"/>
+                </StackPanel>
 
-                    <!-- Sidebar -->
+                <!-- Sidebar -->
+                <ListBox SelectionMode="Single" 
+                         SelectionChanged="sidebar_SelectionChanged" 
+                         x:Name="sidebar" Grid.Row="1" 
+                         BorderThickness="0"
+                         Background="Transparent"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="10,8"/>
+                            <Setter Property="Margin" Value="0,2"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="border"
+                                                Background="{TemplateBinding Background}"
+                                                BorderThickness="0"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}"
+                                                Margin="{TemplateBinding Margin}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#065386"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="#0873B8"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBoxItem x:Name="lbiProductos">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="Food" 
+                                                     Grid.Column="0"
+                                                     Width="25" Height="25" 
+                                                     Margin="0,0,10,0"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Productos" 
+                                       Grid.Column="1"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem x:Name="lbiPedidos">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="Cart" 
+                                                     Grid.Column="0"
+                                                     Width="25" Height="25" 
+                                                     Margin="0,0,10,0"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Pedidos" 
+                                       Grid.Column="1"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                    </ListBoxItem>
+
+                    <ListBoxItem x:Name="lbiClientes">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="AccountMultiple" 
+                                                     Grid.Column="0"
+                                                     Width="25" Height="25" 
+                                                     Margin="0,0,10,0"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Clientes" 
+                                       Grid.Column="1"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                    </ListBoxItem>
+                </ListBox>
+
+                <!-- Opciones inferiores -->
+                <StackPanel Grid.Row="2" Margin="0,10,0,0">
                     <ListBox SelectionMode="Single" 
-                             SelectionChanged="sidebar_SelectionChanged" 
-                             x:Name="sidebar" Grid.Row="1" 
+                             SelectionChanged="sidebar_SelectionChanged"
                              BorderThickness="0"
-                             Background="#FFE0F1FE">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <DockPanel LastChildFill="False"/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
+                             Background="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Padding" Value="0"/>
-                                <Setter Property="Margin" Value="5,0,0,0"/>
-                                <Setter Property="DockPanel.Dock" Value="Top"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#065386"/>
-                                    </Trigger>
-                                </Style.Triggers>
+                                <Setter Property="Padding" Value="10,8"/>
+                                <Setter Property="Margin" Value="0,2"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border x:Name="border"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    CornerRadius="5"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    Margin="{TemplateBinding Margin}">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#065386"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#0873B8"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </Style>
                         </ListBox.ItemContainerStyle>
 
-                        <ListBoxItem x:Name="lbiProductos">
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <materialDesign:PackIcon Kind="Food" 
-                                     Width="25" Height="25" 
-                                     Margin="0,0,10,0"
-                                     VerticalAlignment="Center"/>
-                                <TextBlock Text="Productos" 
+                        <ListBoxItem x:Name="lbiEditPerfil">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="AccountCogOutline" 
+                                                         Grid.Column="0"
+                                                         Width="25" Height="25" 
+                                                         Margin="0,0,10,0"
+                                                         VerticalAlignment="Center"/>
+                                <TextBlock Text="Editar Perfil" 
+                                           Grid.Column="1"
                                            FontSize="14"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem x:Name="lbiPedidos">
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <materialDesign:PackIcon Kind="Cart" 
-                                     Width="25" Height="25" 
-                                     Margin="0,0,10,0"
-                                     VerticalAlignment="Center"/>
-                                <TextBlock Text="Pedidos" 
-                                           FontSize="14"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem x:Name="lbiClientes">
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <materialDesign:PackIcon Kind="AccountMultiple" 
-                                     Width="25" Height="25" 
-                                     Margin="0,0,10,0"
-                                     VerticalAlignment="Center"/>
-                                <TextBlock Text="Clientes" 
-                                            FontSize="14"
-                                           VerticalAlignment="Center"/>
-                            </StackPanel>
+                                           VerticalAlignment="Center"
+                                           TextWrapping="Wrap"/>
+                            </Grid>
                         </ListBoxItem>
 
-                        <!--Opciones alineadas abajo-->
-                        <ListBoxItem x:Name="lbiLogout" DockPanel.Dock="Bottom">
-                            <StackPanel Orientation="Horizontal" Margin="3">
+                        <ListBoxItem x:Name="lbiLogout">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <materialDesign:PackIcon Kind="Logout" 
-                                     Width="25" Height="25" 
-                                     Margin="0,0,10,0"
-                                     VerticalAlignment="Center"/>
+                                                         Grid.Column="0"
+                                                         Width="25" Height="25" 
+                                                         Margin="0,0,10,0"
+                                                         VerticalAlignment="Center"/>
                                 <TextBlock Text="Log out" 
-                                    FontSize="14"
-                                    VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem x:Name="lbiEditPerfil" DockPanel.Dock="Bottom">
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <materialDesign:PackIcon Kind="AccountCogOutline" 
-                                     Width="25" Height="25" 
-                                     Margin="0,0,10,0"
-                                     VerticalAlignment="Center"/>
-                                <TextBlock Text="Editar Perfil" 
-                                    FontSize="14"
-                                    VerticalAlignment="Center"/>
-                            </StackPanel>
+                                           Grid.Column="1"
+                                           FontSize="14"
+                                           VerticalAlignment="Center"
+                                           TextWrapping="Wrap"/>
+                            </Grid>
                         </ListBoxItem>
                     </ListBox>
-
-                </Grid>
-            </Viewbox>
+                </StackPanel>
+            </Grid>
         </Grid>
-
-        <!-- Frame principal -->
     </Grid>
 </Window>
