@@ -2,34 +2,47 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TVPGestion_IPO.Services;
 
 namespace TVPGestion_IPO.Views
 {
     /// <summary>
-    /// Logica de interaccion para PedidosPage.xaml
+    /// Lógica de interacción para PedidosPage.xaml
     /// </summary>
     public partial class PedidosPage : Page
     {
         private ObservableCollection<PedidoViewModel> pedidosVM;
         private ICollectionView pedidosView;
+        private readonly PedidoService pedidoService;
 
         public PedidosPage()
         {
             InitializeComponent();
 
-            // Ejemplo de datos
-            pedidosVM = new ObservableCollection<PedidoViewModel>
-            {
-                new PedidoViewModel { Id = "P001", FechaHoraRealizacion = "2024-01-15 14:30", Medio = "EnLocal", Modalidad = "RecogerAhora", ClienteId = "C001", ProductosString = "Pizza Margarita x2", ImporteTotal = 17.98m, FormaPago = "Tarjeta", Estado = "EnElaboracion", DireccionEntrega = "", CosteEnvio = 0m, PuntosGanados = 0 },
-                new PedidoViewModel { Id = "P002", FechaHoraRealizacion = "2024-01-15 15:45", Medio = "Telefono", Modalidad = "Domicilio", ClienteId = "C002", ProductosString = "Hamburguesa x1, Refresco x1", ImporteTotal = 8.99m, FormaPago = "Efectivo", Estado = "PendientePago", DireccionEntrega = "Calle Falsa 123", CosteEnvio = 2.5m, PuntosGanados = 0 },
-            };
+            pedidoService = new PedidoService();
+
+            // Cargar datos desde archivo
+            var pedidosCargados = pedidoService.CargarPedidos();
+            pedidosVM = new ObservableCollection<PedidoViewModel>(pedidosCargados);
 
             pedidosView = CollectionViewSource.GetDefaultView(pedidosVM);
             PedidosDataGrid.ItemsSource = pedidosView;
+        }
+
+        private void GuardarCambios()
+        {
+            try
+            {
+                var listaPedidos = new List<PedidoViewModel>(pedidosVM);
+                pedidoService.GuardarPedidos(listaPedidos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar pedidos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -39,36 +52,14 @@ namespace TVPGestion_IPO.Views
             {
                 var ped = item as PedidoViewModel;
                 return ped != null && (
-                    (ped.Id ?? "").ToLower().Contains(filtro) ||
-                    (ped.ClienteId ?? "").ToLower().Contains(filtro) ||
-                    (ped.ProductosString ?? "").ToLower().Contains(filtro) ||
-                    (ped.Estado ?? "").ToLower().Contains(filtro) ||
-                    (ped.FormaPago ?? "").ToLower().Contains(filtro) ||
-                    (ped.Medio ?? "").ToLower().Contains(filtro) ||
-                    (ped.Modalidad ?? "").ToLower().Contains(filtro)
+                    ped.Id.ToLower().Contains(filtro) ||
+                    ped.ClienteId.ToLower().Contains(filtro) ||
+                    ped.ProductosString.ToLower().Contains(filtro) ||
+                    ped.Estado.ToLower().Contains(filtro) ||
+                    ped.ImporteTotal.ToString().Contains(filtro)
                 );
             };
             pedidosView.Refresh();
-        }
-
-        private void BtnDeletePedido_Click(object sender, RoutedEventArgs e)
-        {
-            // Obtener el pedido seleccionado
-            var button = sender as Button;
-            var pedido = button?.DataContext as PedidoViewModel;
-            if (pedido == null) return;
-
-            var result = MessageBox.Show(
-                $"Estás seguro de que quieres eliminar el pedido \"{pedido.Id}\"?",
-                "Confirmar eliminacion",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                pedidosVM.Remove(pedido);
-                pedidosView.Refresh();
-            }
         }
 
         private void BtnEditPedido_Click(object sender, RoutedEventArgs e)
@@ -77,10 +68,35 @@ namespace TVPGestion_IPO.Views
             var pedido = button?.DataContext as PedidoViewModel;
             if (pedido == null) return;
 
-            var editWindow = new PedidoEditWindow(pedido);
+            var editWindow = new PedidoEditWindow(pedido)
+            {
+                Owner = Window.GetWindow(this)
+            };
+
             if (editWindow.ShowDialog() == true)
             {
                 pedidosView.Refresh();
+                GuardarCambios();
+            }
+        }
+
+        private void BtnDeletePedido_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var pedido = button?.DataContext as PedidoViewModel;
+            if (pedido == null) return;
+
+            var result = MessageBox.Show(
+                $"¿Estás seguro de que quieres eliminar el pedido {pedido.Id}?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                pedidosVM.Remove(pedido);
+                pedidosView.Refresh();
+                GuardarCambios();
             }
         }
     }

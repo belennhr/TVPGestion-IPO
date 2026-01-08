@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -70,6 +73,10 @@
     <Compile Include="Models\Gestor.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Services\ClienteService.cs" />
+    <Compile Include="Services\DataPersistenceService.cs" />
+    <Compile Include="Services\PedidoService.cs" />
+    <Compile Include="Services\ProductoService.cs" />
     <Compile Include="ViewModel\PedidoViewModel.cs" />
     <Compile Include="Views\EditarPerfilWindow.xaml.cs">
       <DependentUpon>EditarPerfilWindow.xaml</DependentUpon>

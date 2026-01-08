@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using TVPGestion_IPO.Models;
+using TVPGestion_IPO.Services;
 
 namespace TVPGestion_IPO.Views
 {
@@ -17,21 +18,46 @@ namespace TVPGestion_IPO.Views
     {
         private ObservableCollection<ProductoViewModel> productosVM;
         private ICollectionView productosView;
+        private readonly ProductoService productoService;
 
         public ProductosPage()
         {
             InitializeComponent();
 
-            // Ejemplo de datos
-            productosVM = new ObservableCollection<ProductoViewModel>
+            productoService = new ProductoService();
+
+            // Cargar datos desde archivo
+            var productosCargados = productoService.CargarProductos();
+            productosVM = new ObservableCollection<ProductoViewModel>(productosCargados);
+
+            // Si no hay datos, inicializar con datos de ejemplo (opcional)
+            if (productosVM.Count == 0)
             {
-                new ProductoViewModel { Nombre = "Pizza Margarita", Categoria = "Plato", Subcategoria = "Clásica", Foto = "/Assets/Icons/comidaIcon.png", Precio = "8.99", AlergenosString = "Gluten, Lácteos", IngredientesString = "Tomate, Queso, Albahaca" },
-                new ProductoViewModel { Nombre = "Hamburguesa", Categoria = "Plato", Subcategoria = "Especial", Foto = "/Assets/Icons/comidaIcon.png", Precio = "6.99", AlergenosString = "Gluten", IngredientesString = "Carne, Queso, Pan" },
-                // ... más productos
-            };
+                InicializarDatosEjemplo();
+            }
 
             productosView = CollectionViewSource.GetDefaultView(productosVM);
             ProductosDataGrid.ItemsSource = productosView;
+        }
+
+        private void InicializarDatosEjemplo()
+        {
+            productosVM.Add(new ProductoViewModel { Nombre = "Pizza Margarita", Categoria = "Plato", Subcategoria = "Clásica", Foto = "/Assets/Icons/comidaIcon.png", Precio = "8.99", AlergenosString = "Gluten, Lácteos", IngredientesString = "Tomate, Queso, Albahaca" });
+            productosVM.Add(new ProductoViewModel { Nombre = "Hamburguesa", Categoria = "Plato", Subcategoria = "Especial", Foto = "/Assets/Icons/comidaIcon.png", Precio = "6.99", AlergenosString = "Gluten", IngredientesString = "Carne, Queso, Pan" });
+            GuardarCambios();
+        }
+
+        private void GuardarCambios()
+        {
+            try
+            {
+                var listaProductos = new List<ProductoViewModel>(productosVM);
+                productoService.GuardarProductos(listaProductos);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar productos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,12 +84,12 @@ namespace TVPGestion_IPO.Views
             {
                 productosVM.Add(addWindow.nuevoProducto);
                 productosView.Refresh();
+                GuardarCambios();
             }
         }
 
         private void BtnDeleteProducto_Click(object sender, RoutedEventArgs e)
         {
-            // Obtener el producto seleccionado
             var button = sender as Button;
             var producto = button?.DataContext as ProductoViewModel;
             if (producto == null) return;
@@ -78,6 +104,7 @@ namespace TVPGestion_IPO.Views
             {
                 productosVM.Remove(producto);
                 productosView.Refresh();
+                GuardarCambios();
             }
         }
 
@@ -91,8 +118,8 @@ namespace TVPGestion_IPO.Views
             if (editWindow.ShowDialog() == true)
             {
                 productosView.Refresh();
+                GuardarCambios();
             }
         }
-
     }
 }

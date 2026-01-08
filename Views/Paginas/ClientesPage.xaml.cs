@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TVPGestion_IPO.Services;
 
 namespace TVPGestion_IPO.Views
 {
@@ -15,55 +16,46 @@ namespace TVPGestion_IPO.Views
     {
         private ObservableCollection<ClienteViewModel> clientesVM;
         private ICollectionView clientesView;
+        private readonly ClienteService clienteService;
 
         public ClientesPage()
         {
             InitializeComponent();
 
-            // Ejemplo de datos
-            clientesVM = new ObservableCollection<ClienteViewModel>
+            clienteService = new ClienteService();
+
+            // Cargar datos desde archivo
+            var clientesCargados = clienteService.CargarClientes();
+            clientesVM = new ObservableCollection<ClienteViewModel>(clientesCargados);
+
+            // Si no hay datos, inicializar con datos de ejemplo (opcional)
+            if (clientesVM.Count == 0)
             {
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 },
-                new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 },
-                new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 }
-                // ... más clientes
-            };
+                InicializarDatosEjemplo();
+            }
 
             clientesView = CollectionViewSource.GetDefaultView(clientesVM);
             ClientesDataGrid.ItemsSource = clientesView;
+        }
+
+        private void InicializarDatosEjemplo()
+        {
+            clientesVM.Add(new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 });
+            clientesVM.Add(new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 });
+            GuardarCambios();
+        }
+
+        private void GuardarCambios()
+        {
+            try
+            {
+                var listaClientes = new List<ClienteViewModel>(clientesVM);
+                clienteService.GuardarClientes(listaClientes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar clientes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -93,12 +85,12 @@ namespace TVPGestion_IPO.Views
             {
                 clientesVM.Add(addWindow.nuevoCliente);
                 clientesView.Refresh();
+                GuardarCambios();
             }
         }
 
         private void BtnDeleteCliente_Click(object sender, RoutedEventArgs e)
         {
-            // Obtener el cliente seleccionado
             var button = sender as Button;
             var cliente = button?.DataContext as ClienteViewModel;
             if (cliente == null) return;
@@ -113,6 +105,7 @@ namespace TVPGestion_IPO.Views
             {
                 clientesVM.Remove(cliente);
                 clientesView.Refresh();
+                GuardarCambios();
             }
         }
 
@@ -130,8 +123,8 @@ namespace TVPGestion_IPO.Views
             if (editWindow.ShowDialog() == true)
             {
                 clientesView.Refresh();
+                GuardarCambios();
             }
-
         }
     }
 }
