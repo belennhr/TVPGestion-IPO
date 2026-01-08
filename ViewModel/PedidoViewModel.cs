@@ -8,27 +8,9 @@ namespace TVPGestion_IPO.Views
 {
     public class ProductoCantidadViewModel
     {
-        private string nombre;
-        private decimal precio;
-        private int cantidad;
-
-        public string Nombre
-        {
-            get => nombre;
-            set { nombre = value; }
-        }
-
-        public decimal Precio
-        {
-            get => precio;
-            set { precio = value; }
-        }
-
-        public int Cantidad
-        {
-            get => cantidad;
-            set { cantidad = value; }
-        }
+        public string Nombre { get; set; }
+        public decimal Precio { get; set; }
+        public int Cantidad { get; set; }
     }
 
     public class PedidoViewModel
@@ -38,7 +20,7 @@ namespace TVPGestion_IPO.Views
         public string Medio { get; set; } // EnLocal, Telefono
         public string Modalidad { get; set; } // RecogerAhora, RecogerHora, Domicilio
         public string FechaHoraRecogida { get; set; }
-        public string ClienteId { get; set; }
+        public string ClienteEmail { get; set; } // Email del cliente (ID)
         public string ProductosString { get; set; } // Resumen: "Pizza x2, Refresco x1"
         public decimal ImporteTotal { get; set; }
         public string FormaPago { get; set; }
@@ -46,6 +28,7 @@ namespace TVPGestion_IPO.Views
         public string DireccionEntrega { get; set; }
         public decimal CosteEnvio { get; set; }
         public bool EnvioGratisCanjeado { get; set; }
+        public bool AcumularPuntos { get; set; } = true;
         public int PuntosGanados { get; set; }
 
         // Lista editable de productos y cantidades
@@ -64,14 +47,14 @@ namespace TVPGestion_IPO.Views
         // Método de conversión Model → ViewModel
         public static PedidoViewModel FromPedido(Pedido pedido)
         {
-            return new PedidoViewModel
+            var vm = new PedidoViewModel
             {
                 Id = pedido.Id,
                 FechaHoraRealizacion = pedido.FechaHoraRealizacion.ToString("g"),
                 Medio = pedido.Medio.ToString(),
                 Modalidad = pedido.Modalidad.ToString(),
                 FechaHoraRecogida = pedido.FechaHoraRecogida?.ToString("g") ?? "",
-                ClienteId = pedido.ClienteId,
+                ClienteEmail = pedido.ClienteEmail,
                 ProductosString = string.Join(", ", pedido.Productos.Select(p => $"{p.Key.Nombre} x{p.Value}")),
                 ImporteTotal = pedido.ImporteTotal,
                 FormaPago = pedido.FormaPago,
@@ -79,32 +62,53 @@ namespace TVPGestion_IPO.Views
                 DireccionEntrega = pedido.DireccionEntrega,
                 CosteEnvio = pedido.CosteEnvio,
                 EnvioGratisCanjeado = pedido.EnvioGratisCanjeado,
-                PuntosGanados = CalcularPuntosGanados(pedido.ImporteTotal)
+                AcumularPuntos = pedido.AcumularPuntos,
+                PuntosGanados = pedido.CalcularPuntosGanados()
             };
+
+            foreach (var prod in pedido.Productos)
+            {
+                vm.Productos.Add(new ProductoCantidadViewModel
+                {
+                    Nombre = prod.Key.Nombre,
+                    Precio = prod.Key.Precio,
+                    Cantidad = prod.Value
+                });
+            }
+
+            return vm;
         }
 
-        // Método de conversión ViewModel → Model
-        public Pedido ToPedido()
+        // Método de conversión ViewModel → Model (requiere catálogo de productos)
+        public Pedido ToPedido(List<Producto> catalogoProductos)
         {
-            return new Pedido
+            var pedido = new Pedido
             {
                 Id = this.Id,
                 FechaHoraRealizacion = DateTime.Parse(this.FechaHoraRealizacion),
                 Medio = (MedioPedido)Enum.Parse(typeof(MedioPedido), this.Medio),
                 Modalidad = (ModalidadEntrega)Enum.Parse(typeof(ModalidadEntrega), this.Modalidad),
                 FechaHoraRecogida = string.IsNullOrEmpty(this.FechaHoraRecogida) ? (DateTime?)null : DateTime.Parse(this.FechaHoraRecogida),
-                ClienteId = this.ClienteId,
+                ClienteEmail = this.ClienteEmail,
                 FormaPago = this.FormaPago,
                 Estado = (EstadoPedido)Enum.Parse(typeof(EstadoPedido), this.Estado),
                 DireccionEntrega = this.DireccionEntrega,
                 CosteEnvio = this.CosteEnvio,
-                EnvioGratisCanjeado = this.EnvioGratisCanjeado
+                EnvioGratisCanjeado = this.EnvioGratisCanjeado,
+                AcumularPuntos = this.AcumularPuntos
             };
-        }
 
-        private static int CalcularPuntosGanados(decimal importe)
-        {
-            return (int)(importe / 10); // 1 punto por cada 10€
+            // Convertir productos
+            foreach (var prodVM in this.Productos)
+            {
+                var producto = catalogoProductos.FirstOrDefault(p => p.Nombre == prodVM.Nombre);
+                if (producto != null)
+                {
+                    pedido.Productos[producto] = prodVM.Cantidad;
+                }
+            }
+
+            return pedido;
         }
     }
 }

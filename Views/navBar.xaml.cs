@@ -63,5 +63,25 @@ namespace TVPGestion_IPO.Views
                 this.Close();
             }
         }
+
+        private void btnEditPerfil_Click(object sender, RoutedEventArgs e)
+        {
+            EditarPerfilWindow editWindow = new EditarPerfilWindow(); 
+            editWindow.Show();
+            this.Close();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+        var result = MessageBox.Show(
+        "¿Estás seguro de que deseas cerrar sesión?", "Confirmar cierre de sesión",
+        MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                LoginWindow login = new LoginWindow();
+                login.Show();
+                this.Close();
+            }
+        }
     }
 }

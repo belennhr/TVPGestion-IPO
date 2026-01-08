@@ -38,7 +38,14 @@ namespace TVPGestion_IPO.Services
                     return new List<T>();
                 }
 
-                return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
+                var result = JsonConvert.DeserializeObject<List<T>>(json);
+                return result ?? new List<T>();
+            }
+            catch (JsonException ex)
+            {
+                // Si hay error de deserialización, registrar y devolver lista vacía
+                System.Diagnostics.Debug.WriteLine($"Error al deserializar {filePath}: {ex.Message}");
+                return new List<T>();
             }
             catch (Exception ex)
             {
@@ -50,7 +57,17 @@ namespace TVPGestion_IPO.Services
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                if (data == null)
+                {
+                    throw new ArgumentNullException(nameof(data), "Los datos no pueden ser nulos");
+                }
+
+                string json = JsonConvert.SerializeObject(data, Formatting.Indented, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                
                 File.WriteAllText(filePath, json);
             }
             catch (Exception ex)
@@ -61,6 +78,11 @@ namespace TVPGestion_IPO.Services
 
         public void AddItem(T item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item), "El elemento no puede ser nulo");
+            }
+
             var data = LoadData();
             data.Add(item);
             SaveData(data);
@@ -68,6 +90,15 @@ namespace TVPGestion_IPO.Services
 
         public void UpdateItem(Predicate<T> match, T updatedItem)
         {
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+            if (updatedItem == null)
+            {
+                throw new ArgumentNullException(nameof(updatedItem));
+            }
+
             var data = LoadData();
             int index = data.FindIndex(match);
             if (index >= 0)
@@ -79,9 +110,17 @@ namespace TVPGestion_IPO.Services
 
         public void DeleteItem(Predicate<T> match)
         {
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match));
+            }
+
             var data = LoadData();
-            data.RemoveAll(match);
-            SaveData(data);
+            int removedCount = data.RemoveAll(match);
+            if (removedCount > 0)
+            {
+                SaveData(data);
+            }
         }
     }
 }

@@ -9,9 +9,6 @@ using TVPGestion_IPO.Services;
 
 namespace TVPGestion_IPO.Views
 {
-    /// <summary>
-    /// Lógica de interacción para PedidosPage.xaml
-    /// </summary>
     public partial class PedidosPage : Page
     {
         private ObservableCollection<PedidoViewModel> pedidosVM;
@@ -53,7 +50,7 @@ namespace TVPGestion_IPO.Views
                 var ped = item as PedidoViewModel;
                 return ped != null && (
                     ped.Id.ToLower().Contains(filtro) ||
-                    ped.ClienteId.ToLower().Contains(filtro) ||
+                    ped.ClienteEmail.ToLower().Contains(filtro) ||
                     ped.ProductosString.ToLower().Contains(filtro) ||
                     ped.Estado.ToLower().Contains(filtro) ||
                     ped.ImporteTotal.ToString().Contains(filtro)

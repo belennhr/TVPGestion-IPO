@@ -14,6 +14,7 @@ namespace TVPGestion_IPO.Models
         Pagado,
         PendientePago
     }
+
     public class Pedido
     {
         //Campos comunes:
@@ -21,20 +22,25 @@ namespace TVPGestion_IPO.Models
         public DateTime FechaHoraRealizacion { get; set; }
         public MedioPedido Medio { get; set; }
         public ModalidadEntrega Modalidad { get; set; }
-        public DateTime? FechaHoraRecogida { get; set; } // hora concreta a recoger en Establecimmiento o
-                                                         // la hora a recibir a domicilio
-        public string ClienteId { get; set; }
+        public DateTime? FechaHoraRecogida { get; set; } // hora concreta a recoger en Establecimiento o
+                                                          // la hora a recibir a domicilio
+        public string ClienteEmail { get; set; } // Email del cliente (ID)
         public Dictionary<Producto, int> Productos { get; set; } // Producto y cantidad
         public decimal ImporteTotal => CalcularTotal(); //incluido coste de envio
         public string FormaPago { get; set; }
         public EstadoPedido Estado { get; set; }
 
-
         //A domicilio
-        public string DireccionEntrega { get; set; } // Solo si RecogerEstablecimiento es false
+        public string DireccionEntrega { get; set; } // Solo si es a domicilio
         public decimal CosteEnvio { get; set; }
         public bool EnvioGratisCanjeado { get; set; } = false;
+        public bool AcumularPuntos { get; set; } = true; // True = acumular, False = no acumular
 
+        public Pedido()
+        {
+            Productos = new Dictionary<Producto, int>();
+            FechaHoraRealizacion = DateTime.Now;
+        }
 
         private decimal CalcularTotal()
         {
@@ -44,10 +50,29 @@ namespace TVPGestion_IPO.Models
             {
                 total += item.Key.Precio * item.Value;
             }
-            total += CosteEnvio;
+            
+            // Si el envío no fue canjeado, se suma al total
+            if (!EnvioGratisCanjeado)
+            {
+                total += CosteEnvio;
+            }
+            
             return total;
         }
+
+        public decimal CalcularImporteSinEnvio()
+        {
+            decimal total = 0;
+            foreach (var item in Productos)
+            {
+                total += item.Key.Precio * item.Value;
+            }
+            return total;
+        }
+
+        public int CalcularPuntosGanados()
+        {
+            return CalcularImporteSinEnvio() > 20 ? 3 : 0;
+        }
     }
-
-
 }
