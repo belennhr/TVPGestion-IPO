@@ -90,6 +90,9 @@
     <Compile Include="Views\Editar\ProductoAddWindow.xaml.cs">
       <DependentUpon>ProductoAddWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Paginas\Ayuda.xaml.cs">
+      <DependentUpon>Ayuda.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Paginas\ClientesPage.xaml.cs">
       <DependentUpon>ClientesPage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
     <Page Include="Views\Editar\ProductoAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Paginas\Ayuda.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Paginas\ClientesPage.xaml">
       <SubType>Designer</SubType>
