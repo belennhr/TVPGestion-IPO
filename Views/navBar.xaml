@@ -23,6 +23,7 @@
                Background="#e9ecef"
                VerticalAlignment="Stretch"
                HorizontalAlignment="Stretch"/>
+        
 
         <!-- Barra de navegación lateral -->
         <Grid x:Name="navBar1" Background="#FFE0F1FE" Grid.Column="0">
@@ -210,8 +211,8 @@
                         </Grid>
                     </Button>
 
-                    <Button x:Name="btnLogout" 
-                            Click="btnLogout_Click"
+                    <Button x:Name="btnAyuda" 
+                            Click="btnAyuda_Click"
                             Padding="10,8"
                             Margin="0,2"
                             HorizontalContentAlignment="Stretch"
@@ -253,16 +254,70 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Logout" 
+                            <materialDesign:PackIcon Kind="Help" 
                                                      Grid.Column="0"
                                                      Width="25" Height="25" 
                                                      Margin="0,0,10,0"
                                                      VerticalAlignment="Center"/>
-                            <TextBlock Text="Log out" 
+                            <TextBlock 
                                        Grid.Column="1"
                                        FontSize="14"
                                        VerticalAlignment="Center"
-                                       TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap"><Run Language="es-es" Text="Ayuda"/></TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="btnLogout_Copiar" 
+                        Click="btnLogout_Click"
+                        Padding="10,8"
+                        HorizontalContentAlignment="Stretch"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Foreground="Black"
+                        Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border"
+                                                Background="{TemplateBinding Background}"
+                                                BorderThickness="0"
+                                                CornerRadius="5"
+                                                Padding="{TemplateBinding Padding}"
+                                                Margin="{TemplateBinding Margin}">
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#0873B8"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#065386"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="Logout" 
+                                Grid.Column="0"
+                                Width="25" Height="25" 
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Log out" 
+                                Grid.Column="1"
+                                FontSize="14"
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"/>
                         </Grid>
                     </Button>
                 </StackPanel>

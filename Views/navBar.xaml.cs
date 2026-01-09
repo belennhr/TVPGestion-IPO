@@ -22,10 +22,16 @@ namespace TVPGestion_IPO.Views
         public navBar()
         {
             InitializeComponent();
+
+            navframe.Navigate(new Ayuda());
         }
 
         private void sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        // si nada seleccionado enseña ayuda por defecto
+
+
         {
+         
             if (sidebar.SelectedIndex == 0)
             {
                 // Productos
@@ -51,7 +57,8 @@ namespace TVPGestion_IPO.Views
             else if (sidebar.SelectedIndex == 5)
             {
                 // Ayuda
-                MessageBox.Show("Seccion de Ayuda - En desarrollo", "Ayuda", MessageBoxButton.OK, MessageBoxImage.Information);
+                navframe.Navigate(new Ayuda());
+
                 sidebar.SelectedIndex = -1;
             }
             else if (sidebar.SelectedIndex == 3)
@@ -69,6 +76,10 @@ namespace TVPGestion_IPO.Views
             EditarPerfilWindow editWindow = new EditarPerfilWindow(); 
             editWindow.Show();
             this.Close();
+        }
+        private void btnAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            navframe.Navigate(new Ayuda());
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

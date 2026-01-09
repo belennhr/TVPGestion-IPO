@@ -20,7 +20,7 @@
                  HorizontalAlignment="Left"
                  MaxHeight="60"
                  Margin="40,10,28,10">
-            <Label Content="Ayuda y Acerca de" 
+            <Label Content="Acerca de" 
                    FontSize="25" 
                    FontWeight="Bold"/>
         </Viewbox>
