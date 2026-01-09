@@ -23,7 +23,7 @@ namespace TVPGestion_IPO.Views
         {
             InitializeComponent();
 
-            navframe.Navigate(new Ayuda());
+            navframe.Navigate(new PedidosPage());
         }
 
         private void sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,9 +77,10 @@ namespace TVPGestion_IPO.Views
             editWindow.Show();
             this.Close();
         }
-        private void btnAyuda_Click(object sender, RoutedEventArgs e)
+        private void btnInfo_Click(object sender, RoutedEventArgs e)
         {
             navframe.Navigate(new Ayuda());
+            sidebar.SelectedIndex = -1;
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -92,6 +93,62 @@ namespace TVPGestion_IPO.Views
                 LoginWindow login = new LoginWindow();
                 login.Show();
                 this.Close();
+            }
+        }
+
+        private void btnFloatingHelp_Click(object sender, RoutedEventArgs e)
+        {
+            {
+            if (HelpBubble.Visibility == Visibility.Visible)
+            {
+                HelpBubble.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                HelpBubble.Visibility = Visibility.Visible;
+            }
+        }
+        }
+
+        // 2. Evento que detecta en qué página estás y cambia el texto
+        private void navframe_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            // Opcional: Ocultar la ayuda automáticamente al cambiar de página
+            HelpBubble.Visibility = Visibility.Collapsed;
+
+            // Comprobamos qué página se ha cargado en el Frame
+            if (navframe.Content is ProductosPage)
+            {
+                txtHelpContent.Text = "Estás en GESTIÓN DE PRODUCTOS.\n\n" +
+                                      "• Usa el botón 'añadir producto' para añadir platos.\n" +
+                                      "• Usa los iconos de lápiz para editar precios o alérgenos.\n" +
+                                      "• Usa los iconos de basura para eliminar los productos";
+            }
+            else if (navframe.Content is ClientesPage)
+            {
+                txtHelpContent.Text = "Estás en GESTIÓN DE CLIENTES.\n\n" +
+                                      "• Busca clientes por teléfono o nombre.\n" +
+                                      "• Gestiona aquí sus puntos de fidelidad.";
+            }
+            else if (navframe.Content is PedidosPage)
+            {
+                txtHelpContent.Text = "Estás en PEDIDOS.\n\n" +
+                                      "• Selecciona un cliente primero.\n" +
+                                      "• Añade productos al carrito y finaliza la venta.";
+            }
+            else if (navframe.Content is EditarPerfilWindow) // O la página de perfil si es Page
+            {
+                txtHelpContent.Text = "Modifica aquí tu contraseña y datos de usuario.";
+            }
+            // Si tienes la página de 'Ayuda' (Info)
+            else if (navframe.Content is Ayuda) 
+            {
+                txtHelpContent.Text = "Esta es la pantalla de información general del sistema y versión.";
+            }
+            else
+            {
+                // Texto por defecto si no reconoce la página
+                txtHelpContent.Text = "Selecciona una opción del menú lateral para comenzar.";
             }
         }
     }

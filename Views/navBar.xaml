@@ -18,12 +18,57 @@
         </Grid.ColumnDefinitions>
 
         <!-- Frame principal -->
-        <Frame Grid.Column="1" x:Name="navframe" 
-               NavigationUIVisibility="Hidden" 
-               Background="#e9ecef"
-               VerticalAlignment="Stretch"
-               HorizontalAlignment="Stretch"/>
-        
+        <Grid Grid.Column="1">
+
+            <Frame x:Name="navframe" 
+                   NavigationUIVisibility="Hidden" 
+                   Background="#e9ecef"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch"
+                   Navigated="navframe_Navigated"/>
+
+            <StackPanel HorizontalAlignment="Right" 
+                        VerticalAlignment="Bottom" 
+                        Margin="0,0,30,30" 
+                        Panel.ZIndex="99">
+
+                <Border x:Name="HelpBubble" 
+                        Background="White" 
+                        BorderBrush="#065386" 
+                        BorderThickness="1" 
+                        CornerRadius="10" 
+                        Padding="15" 
+                        Margin="0,0,0,10"
+                        Visibility="Collapsed" 
+                        MaxWidth="250">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="2" BlurRadius="5" Opacity="0.3"/>
+                    </Border.Effect>
+
+                    <StackPanel>
+                        <TextBlock Text="Ayuda Rápida" FontWeight="Bold" Foreground="#065386" Margin="0,0,0,5"/>
+
+                        <TextBlock x:Name="txtHelpContent" 
+                                   Text="Cargando ayuda..." 
+                                   TextWrapping="Wrap" 
+                                   FontSize="12"/>
+                    </StackPanel>
+                </Border>
+
+                <Button x:Name="btnFloatingHelp"
+                        Click="btnFloatingHelp_Click"
+                        Width="50" Height="50"
+                        HorizontalAlignment="Right"
+                        Background="#065386"
+                        BorderBrush="White"
+                        BorderThickness="2"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        ToolTip="Ver ayuda de esta pantalla">
+                    <materialDesign:PackIcon Kind="Help" Width="28" Height="28" Foreground="White"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
 
         <!-- Barra de navegación lateral -->
         <Grid x:Name="navBar1" Background="#FFE0F1FE" Grid.Column="0">
@@ -211,8 +256,8 @@
                         </Grid>
                     </Button>
 
-                    <Button x:Name="btnAyuda" 
-                            Click="btnAyuda_Click"
+                    <Button x:Name="btnInfo" 
+                            Click="btnInfo_Click"
                             Padding="10,8"
                             Margin="0,2"
                             HorizontalContentAlignment="Stretch"
@@ -254,7 +299,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Help" 
+                            <materialDesign:PackIcon Kind="info" 
                                                      Grid.Column="0"
                                                      Width="25" Height="25" 
                                                      Margin="0,0,10,0"
@@ -263,7 +308,7 @@
                                        Grid.Column="1"
                                        FontSize="14"
                                        VerticalAlignment="Center"
-                                       TextWrapping="Wrap"><Run Language="es-es" Text="Ayuda"/></TextBlock>
+                                       TextWrapping="Wrap"><Run Language="es-es" Text="Información"/></TextBlock>
                         </Grid>
                     </Button>
                     <Button x:Name="btnLogout_Copiar" 
