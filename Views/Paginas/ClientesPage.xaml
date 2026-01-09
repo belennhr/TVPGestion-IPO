@@ -71,7 +71,8 @@
                         Click="BtnAddCliente_Click"
                         Style="{StaticResource RoundedButton}"
                         Background="#e9ecef" 
-                        BorderBrush="#ccc">
+                        BorderBrush="#ccc"
+                        ToolTip="Crear un nuevo cliente">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="Add" Width="24" Height="24" 
                                                  Foreground="Gray"
@@ -149,7 +150,8 @@
                                     Click="BtnEditCliente_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Editar cliente seleccionado">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -178,7 +180,8 @@
                                     Click="BtnDeleteCliente_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Eliminar cliente">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>

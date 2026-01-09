@@ -93,7 +93,8 @@
                                     Click="BtnEditPedido_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Editar pedido seleccionado">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -122,7 +123,8 @@
                                     Click="BtnDeletePedido_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Eliminar pedido">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>

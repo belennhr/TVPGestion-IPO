@@ -70,7 +70,8 @@
                         Click="BtnAddProducto_Click"
                         Style="{StaticResource RoundedButton}"
                         Background="#e9ecef" 
-                        BorderBrush="#ccc">
+                        BorderBrush="#ccc"
+                        ToolTip="Crear un nuevo producto">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="PencilAdd" Width="24" Height="24" 
                                                  Foreground="Gray"
@@ -148,7 +149,8 @@
                                     Click="BtnEditProducto_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Editar producto seleccionado">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -177,7 +179,8 @@
                                     Click="BtnDeleteProducto_Click"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    ToolTip="Eliminar producto">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Background" Value="Transparent"/>
