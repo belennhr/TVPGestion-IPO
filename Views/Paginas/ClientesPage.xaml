@@ -230,7 +230,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Teléfonos" Binding="{Binding TelefonosString}" Width="*" MinWidth="90">
+                <DataGridTextColumn Header="Teléfonos" Binding="{Binding TelefonosString}" Width="*" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -257,7 +257,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Forma de pago" Binding="{Binding FormaPago}" Width="*" MinWidth="90">
+                <DataGridTextColumn Header="Pago" Binding="{Binding FormaPago}" Width="*" MinWidth="50">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>

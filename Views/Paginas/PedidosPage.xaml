@@ -95,6 +95,7 @@
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="Height" Value="Auto"/>
                     <Setter Property="MinHeight" Value="40"/>
+                    <Setter Property="Width" Value="auto"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
@@ -116,7 +117,7 @@
 
             <DataGrid.Columns>
                 <!--Editar Pedidos-->
-                <DataGridTemplateColumn x:Name="Editar" Header="" Width="50" MinWidth="40">
+                <DataGridTemplateColumn x:Name="Editar" Header="" Width="auto" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Background="Transparent" BorderThickness="0" Padding="2"
@@ -146,7 +147,7 @@
                 </DataGridTemplateColumn>
 
                 <!--Borrar Pedidos-->
-                <DataGridTemplateColumn Header="" Width="50" MinWidth="40">
+                <DataGridTemplateColumn Header="" Width="auto" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Background="Transparent" BorderThickness="0" Padding="2"
@@ -178,7 +179,7 @@
                 <!-- Campos especificos con TextWrapping para mejor responsive -->
                 
                 <!-- ID del Pedido -->
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.5*" MinWidth="60">
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="auto" MinWidth="60">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -187,7 +188,7 @@
                 </DataGridTextColumn>
 
                 <!-- Fecha y Hora de Realizacion -->
-                <DataGridTextColumn Header="Fecha/Hora" Binding="{Binding FechaHoraRealizacion}" Width="1*" MinWidth="110">
+                <DataGridTextColumn Header="Fecha/Hora" Binding="{Binding FechaHoraRealizacion}" Width="auto" MinWidth="110">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -197,7 +198,7 @@
                 </DataGridTextColumn>
 
                 <!-- Medio: En Local / Telefono -->
-                <DataGridTextColumn Header="Medio" Binding="{Binding Medio}" Width="0.7*" MinWidth="80">
+                <DataGridTextColumn Header="Medio" Binding="{Binding Medio}" Width="auto" MinWidth="80">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -206,7 +207,7 @@
                 </DataGridTextColumn>
 
                 <!-- Modalidad: RecogerAhora / RecogerHora / Domicilio -->
-                <DataGridTextColumn Header="Modalidad" Binding="{Binding Modalidad}" Width="0.9*" MinWidth="100">
+                <DataGridTextColumn Header="Modalidad" Binding="{Binding Modalidad}" Width="auto" MinWidth="110">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -216,7 +217,7 @@
                 </DataGridTextColumn>
 
                 <!-- Hora de Recogida/Recepcion -->
-                <DataGridTextColumn Header="Hora Recogida" Binding="{Binding FechaHoraRecogida}" Width="1*" MinWidth="110">
+                <DataGridTextColumn Header="Hora Recogida" Binding="{Binding FechaHoraRecogida}" Width="auto" MinWidth="150">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -226,7 +227,7 @@
                 </DataGridTextColumn>
 
                 <!-- Email del Cliente -->
-                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteEmail}" Width="1.2*" MinWidth="120">
+                <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteEmail}" Width="auto" MinWidth="120">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -236,7 +237,7 @@
                 </DataGridTextColumn>
 
                 <!-- Direccion de Entrega (solo para Domicilio) -->
-                <DataGridTextColumn Header="Direccion" Binding="{Binding DireccionEntrega}" Width="1.3*" MinWidth="130">
+                <DataGridTextColumn Header="Direccion" Binding="{Binding DireccionEntrega}" Width="auto" MinWidth="130">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -246,7 +247,7 @@
                 </DataGridTextColumn>
 
                 <!-- Productos del Pedido -->
-                <DataGridTextColumn Header="Productos" Binding="{Binding ProductosString}" Width="1.5*" MinWidth="150">
+                <DataGridTextColumn Header="Productos" Binding="{Binding ProductosString}" Width="2*" MinWidth="150">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -256,7 +257,7 @@
                 </DataGridTextColumn>
 
                 <!-- Importe Total -->
-                <DataGridTextColumn Header="Importe" Binding="{Binding ImporteTotal, StringFormat={}{0:C}}" Width="0.7*" MinWidth="80">
+                <DataGridTextColumn Header="Importe" Binding="{Binding ImporteTotal, StringFormat={}{0:C}}" Width="auto" MinWidth="90">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -265,7 +266,7 @@
                 </DataGridTextColumn>
 
                 <!-- Forma de Pago -->
-                <DataGridTextColumn Header="Pago" Binding="{Binding FormaPago}" Width="0.7*" MinWidth="70">
+                <DataGridTextColumn Header="Pago" Binding="{Binding FormaPago}" Width="auto" MinWidth="70">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -274,7 +275,7 @@
                 </DataGridTextColumn>
 
                 <!-- Estado del Pedido -->
-                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="0.9*" MinWidth="90">
+                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="auto" MinWidth="90">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -284,7 +285,7 @@
                 </DataGridTextColumn>
 
                 <!-- Coste de Envio (solo para Domicilio) -->
-                <DataGridTextColumn Header="Envio" Binding="{Binding CosteEnvio, StringFormat={}{0:C}}" Width="0.6*" MinWidth="65">
+                <DataGridTextColumn Header="Envio" Binding="{Binding CosteEnvio, StringFormat={}{0:C}}" Width="auto" MinWidth="65">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -293,7 +294,7 @@
                 </DataGridTextColumn>
 
                 <!-- Puntos Ganados -->
-                <DataGridTextColumn Header="Puntos" Binding="{Binding PuntosGanados}" Width="0.6*" MinWidth="60">
+                <DataGridTextColumn Header="Puntos" Binding="{Binding PuntosGanados}" Width="auto" MinWidth="60">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>

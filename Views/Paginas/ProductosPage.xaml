@@ -202,7 +202,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Campos especificos con TextWrapping para mejor responsive -->
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="1.2*" MinWidth="100">
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -211,7 +211,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="*" MinWidth="80">
+                <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}" Width="auto" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -220,7 +220,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Subcategoría" Binding="{Binding Subcategoria}" Width="*" MinWidth="90">
+                <DataGridTextColumn Header="Subcategoría" Binding="{Binding Subcategoria}" Width="auto" MinWidth="130">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -229,7 +229,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="0.7*" MinWidth="60">
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="auto" MinWidth="80">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -237,7 +237,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Alergenos" Binding="{Binding AlergenosString}" Width="1.2*" MinWidth="100">
+                <DataGridTextColumn Header="Alergenos" Binding="{Binding AlergenosString}" Width="auto" MinWidth="120">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -246,7 +246,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Ingredientes" Binding="{Binding IngredientesString}" Width="1.5*" MinWidth="120">
+                <DataGridTextColumn Header="Ingredientes" Binding="{Binding IngredientesString}" Width="auto" MinWidth="120">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
