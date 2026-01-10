@@ -117,6 +117,19 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Estilo para ComboBox moderno -->
+            <Style x:Key="ModerCombobox" TargetType="ComboBox">
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="8,4"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <Style TargetType="ComboBox" BasedOn="{StaticResource ModerCombobox}"/>
+
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

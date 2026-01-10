@@ -21,8 +21,8 @@
                        Foreground="#065386"/>
 
             <!-- Contenido en dos columnas -->
-            <ScrollViewer x:Name="campos" Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <Grid Height="359">
+            <ScrollViewer x:Name="campos" Height="auto" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="30"/>

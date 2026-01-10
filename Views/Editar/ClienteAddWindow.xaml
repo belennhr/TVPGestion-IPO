@@ -19,7 +19,7 @@
             <TextBlock x:Name="txtAñadirCliente" Grid.Row="0" Text="Añadir Cliente" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
 
             <!-- Contenido en dos columnas -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Height="auto" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid x:Name="dos_columnas">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -83,13 +83,12 @@
                         <!-- Forma de Pago (ComboBox) -->
                         <StackPanel Margin="0,0,0,12">
                             <Label Content="Forma de Pago" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                            <ComboBox x:Name="CmbFormaPago" 
-                                      Height="36"
-                                      FontSize="14"
-                                      VerticalContentAlignment="Center"
-                                      ItemsSource="{ Binding FormasPagoDisponibles}"
-                                      SelectedItem="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox
+                                    ItemsSource="{Binding FormasPagoDisponibles}"
+                                    SelectedItem="{Binding FormaPago}"
+                                    VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
                         </StackPanel>
+
 
                         <!-- Puntos Acumulados -->
                         <StackPanel Margin="0,0,0,12">

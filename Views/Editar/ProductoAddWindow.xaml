@@ -18,7 +18,7 @@
             <TextBlock x:Name="txtAñadirProducto" Grid.Row="0" Text="Añadir Producto" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
 
             <!-- Contenido en dos columnas -->
-            <ScrollViewer x:Name="campos" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="campos" Height="auto" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

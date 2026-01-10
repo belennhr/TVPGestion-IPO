@@ -5,6 +5,15 @@ using TVPGestion_IPO.Models;
 
 namespace TVPGestion_IPO.Views
 {
+    public class PedidoResumenViewModel
+    {
+        public string Id { get; set; }
+        public string Fecha { get; set; }
+        public string Estado { get; set; }
+        public decimal ImporteTotal { get; set; }
+        public string FormaPago { get; set; }
+    }
+
     public class ClienteViewModel
     {
         public string Email { get; set; } // ID único del cliente
@@ -19,6 +28,9 @@ namespace TVPGestion_IPO.Views
         public int PuntosCanjeados { get; set; }
         public int PuntosDisponibles => PuntosAcumulados - PuntosCanjeados;
         public string HistorialPedidosIds { get; set; } // IDs separados por coma
+
+        // NUEVO: historial de pedidos para UI
+        public List<PedidoResumenViewModel> HistorialPedidos { get; set; } = new List<PedidoResumenViewModel>();
 
         // Lista estática para ComboBox
         public static List<string> FormasPagoDisponibles => 
@@ -39,7 +51,15 @@ namespace TVPGestion_IPO.Views
                 FormaPago = cliente.FormaPago.ToString(),
                 PuntosAcumulados = cliente.PuntosAcumulados,
                 PuntosCanjeados = cliente.PuntosCanjeados,
-                HistorialPedidosIds = string.Join(", ", cliente.HistorialPedidos.Select(p => p.Id))
+                HistorialPedidosIds = string.Join(", ", cliente.HistorialPedidos.Select(p => p.Id)),
+                HistorialPedidos = cliente.HistorialPedidos?.Select(p => new PedidoResumenViewModel
+                {
+                    Id = p.Id,
+                    Fecha = p.FechaHoraRealizacion.ToString("g"),
+                    Estado = p.Estado.ToString(),
+                    ImporteTotal = p.ImporteTotal,
+                    FormaPago = p.FormaPago
+                }).ToList() ?? new List<PedidoResumenViewModel>()
             };
         }
 
@@ -58,7 +78,8 @@ namespace TVPGestion_IPO.Views
                 FormaPago = (FormaPagoCliente)Enum.Parse(typeof(FormaPagoCliente), this.FormaPago),
                 PuntosAcumulados = this.PuntosAcumulados,
                 PuntosCanjeados = this.PuntosCanjeados,
-                HistorialPedidos = new List<Pedido>() // Se carga aparte desde el servicio
+                // HistorialPedidos se gestiona desde servicios; aquí se deja vacío para evitar duplicados
+                HistorialPedidos = new List<Pedido>()
             };
         }
     }

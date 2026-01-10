@@ -13,13 +13,28 @@ namespace TVPGestion_IPO.Views
         public string Foto { get; set; }
         public string Precio { get; set; }
         public string AlergenosString { get; set; }
-        public string IngredientesString { get; set; }
+
+        // NUEVO: colección para mostrar en lista
+        public List<string> Ingredientes { get; set; } = new List<string>();
+
+        // Conserva el string si se edita como texto en otras pantallas
+        public string IngredientesString
+        {
+            get => Ingredientes != null && Ingredientes.Count > 0
+                ? string.Join(", ", Ingredientes)
+                : "";
+            set
+            {
+                Ingredientes = !string.IsNullOrWhiteSpace(value)
+                    ? value.Split(',').Select(i => i.Trim()).Where(i => !string.IsNullOrEmpty(i)).ToList()
+                    : new List<string>();
+            }
+        }
 
         // Lista estatica para ComboBox
-        public static List<string> CategoriasDisponibles => 
+        public static List<string> CategoriasDisponibles =>
             Enum.GetNames(typeof(CategoriaProducto)).ToList();
 
-        // Conversion Model a ViewModel
         public static ProductoViewModel FromProducto(Producto producto)
         {
             return new ProductoViewModel
@@ -29,33 +44,31 @@ namespace TVPGestion_IPO.Views
                 Subcategoria = producto.Subcategoria,
                 Foto = producto.Foto,
                 Precio = producto.Precio.ToString("F2"),
-                AlergenosString = producto.Alergenos != null && producto.Alergenos.Count > 0 
-                    ? string.Join(", ", producto.Alergenos) 
+                AlergenosString = producto.Alergenos != null && producto.Alergenos.Count > 0
+                    ? string.Join(", ", producto.Alergenos)
                     : "",
-                IngredientesString = producto.Ingredientes != null && producto.Ingredientes.Count > 0 
-                    ? string.Join(", ", producto.Ingredientes) 
-                    : ""
+                Ingredientes = producto.Ingredientes != null
+                    ? new List<string>(producto.Ingredientes)
+                    : new List<string>()
             };
         }
 
-        // Conversion ViewModel a Model
         public Producto ToProducto()
         {
             return new Producto
             {
                 Nombre = this.Nombre ?? "",
-                Categoria = !string.IsNullOrEmpty(this.Categoria) 
-                    ? (CategoriaProducto)Enum.Parse(typeof(CategoriaProducto), this.Categoria) 
+                Categoria = !string.IsNullOrEmpty(this.Categoria)
+                    ? (CategoriaProducto)Enum.Parse(typeof(CategoriaProducto), this.Categoria)
                     : CategoriaProducto.Plato,
                 Subcategoria = this.Subcategoria ?? "",
                 Foto = this.Foto ?? "/Assets/Icons/comidaIcon.png",
                 Precio = !string.IsNullOrEmpty(this.Precio) ? decimal.Parse(this.Precio) : 0m,
-                Alergenos = !string.IsNullOrEmpty(this.AlergenosString) 
-                    ? this.AlergenosString.Split(',').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)).ToList() 
+                Alergenos = !string.IsNullOrEmpty(this.AlergenosString)
+                    ? this.AlergenosString.Split(',').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)).ToList()
                     : new List<string>(),
-                Ingredientes = !string.IsNullOrEmpty(this.IngredientesString) 
-                    ? this.IngredientesString.Split(',').Select(i => i.Trim()).Where(i => !string.IsNullOrEmpty(i)).ToList() 
-                    : new List<string>()
+                // Usa la colección directamente
+                Ingredientes = this.Ingredientes ?? new List<string>()
             };
         }
     }

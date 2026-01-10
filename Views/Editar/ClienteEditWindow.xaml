@@ -21,8 +21,12 @@
                        Foreground="#065386"/>
 
             <!-- Contenido en dos columnas -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Height="auto" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <Grid x:Name="dos_columnas">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="30"/>
@@ -30,7 +34,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Columna izquierda -->
-                    <StackPanel x:Name="stackIzq" Grid.Column="0">
+                    <StackPanel x:Name="stackIzq" Grid.Row="0" Grid.Column="0">
                         <!-- Nombre -->
                         <StackPanel x:Name="stackNombre" Margin="0,0,0,12">
                             <Label Content="Nombre" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
@@ -65,7 +69,7 @@
                     </StackPanel>
 
                     <!-- Columna derecha -->
-                    <StackPanel x:Name="stackDer" Grid.Column="2">
+                    <StackPanel x:Name="stackDer" Grid.Row="0" Grid.Column="2">
                         <!-- Emails -->
                         <StackPanel Margin="0,0,0,12">
                             <Label Content="Emails" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
@@ -89,7 +93,7 @@
                                       Height="36"
                                       FontSize="14"
                                       VerticalContentAlignment="Center"
-                                      ItemsSource="{ Binding FormasPagoDisponibles}"
+                                      ItemsSource="{Binding FormasPagoDisponibles}"
                                       SelectedItem="{Binding FormaPago, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
@@ -100,6 +104,25 @@
                                      Style="{StaticResource RoundedTextBox}"
                                      Text="{Binding PuntosAcumulados, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
+                    </StackPanel>
+
+                    <!-- Historial de pedidos: ocupa ambas columnas y dentro del ScrollViewer -->
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0,12,0,0">
+                        <Label Content="Historial de pedidos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
+                        <DataGrid ItemsSource="{Binding HistorialPedidos}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  IsReadOnly="True"
+                                  MinHeight="150"
+                                  Foreground="#065386">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*" />
+                                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
+                                <DataGridTextColumn Header="Importe" Binding="{Binding ImporteTotal, StringFormat={}{0:F2}€}" Width="*" />
+                                <DataGridTextColumn Header="Pago" Binding="{Binding FormaPago}" Width="*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
