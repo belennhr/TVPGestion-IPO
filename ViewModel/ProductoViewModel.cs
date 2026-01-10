@@ -1,23 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using TVPGestion_IPO.Models;
 
 namespace TVPGestion_IPO.Views
 {
-    public class ProductoViewModel
+    public class ProductoViewModel : INotifyPropertyChanged
     {
-        public string Nombre { get; set; }
-        public string Categoria { get; set; }
-        public string Subcategoria { get; set; }
-        public string Foto { get; set; }
-        public string Precio { get; set; }
-        public string AlergenosString { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        // NUEVO: colección para mostrar en lista
-        public List<string> Ingredientes { get; set; } = new List<string>();
+        private string nombre;
+        private string categoria;
+        private string subcategoria;
+        private string foto;
+        private string precio;
+        private string alergenosString;
+        private ObservableCollection<string> ingredientes;
 
-        // Conserva el string si se edita como texto en otras pantallas
+        public string Nombre
+        {
+            get => nombre;
+            set
+            {
+                nombre = value;
+                OnPropertyChanged(nameof(Nombre));
+            }
+        }
+
+        public string Categoria
+        {
+            get => categoria;
+            set
+            {
+                categoria = value;
+                OnPropertyChanged(nameof(Categoria));
+            }
+        }
+
+        public string Subcategoria
+        {
+            get => subcategoria;
+            set
+            {
+                subcategoria = value;
+                OnPropertyChanged(nameof(Subcategoria));
+            }
+        }
+
+        public string Foto
+        {
+            get => foto;
+            set
+            {
+                foto = value;
+                OnPropertyChanged(nameof(Foto));
+            }
+        }
+
+        public string Precio
+        {
+            get => precio;
+            set
+            {
+                precio = value;
+                OnPropertyChanged(nameof(Precio));
+            }
+        }
+
+        public string AlergenosString
+        {
+            get => alergenosString;
+            set
+            {
+                alergenosString = value;
+                OnPropertyChanged(nameof(AlergenosString));
+            }
+        }
+
+        public ObservableCollection<string> Ingredientes
+        {
+            get => ingredientes;
+            set
+            {
+                ingredientes = value;
+                OnPropertyChanged(nameof(Ingredientes));
+                OnPropertyChanged(nameof(IngredientesString));
+            }
+        }
+
         public string IngredientesString
         {
             get => Ingredientes != null && Ingredientes.Count > 0
@@ -26,14 +98,23 @@ namespace TVPGestion_IPO.Views
             set
             {
                 Ingredientes = !string.IsNullOrWhiteSpace(value)
-                    ? value.Split(',').Select(i => i.Trim()).Where(i => !string.IsNullOrEmpty(i)).ToList()
-                    : new List<string>();
+                    ? new ObservableCollection<string>(value.Split(',').Select(i => i.Trim()).Where(i => !string.IsNullOrEmpty(i)))
+                    : new ObservableCollection<string>();
             }
         }
 
-        // Lista estatica para ComboBox
         public static List<string> CategoriasDisponibles =>
             Enum.GetNames(typeof(CategoriaProducto)).ToList();
+
+        public ProductoViewModel()
+        {
+            Ingredientes = new ObservableCollection<string>();
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public static ProductoViewModel FromProducto(Producto producto)
         {
@@ -48,8 +129,8 @@ namespace TVPGestion_IPO.Views
                     ? string.Join(", ", producto.Alergenos)
                     : "",
                 Ingredientes = producto.Ingredientes != null
-                    ? new List<string>(producto.Ingredientes)
-                    : new List<string>()
+                    ? new ObservableCollection<string>(producto.Ingredientes)
+                    : new ObservableCollection<string>()
             };
         }
 
@@ -67,8 +148,7 @@ namespace TVPGestion_IPO.Views
                 Alergenos = !string.IsNullOrEmpty(this.AlergenosString)
                     ? this.AlergenosString.Split(',').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)).ToList()
                     : new List<string>(),
-                // Usa la colección directamente
-                Ingredientes = this.Ingredientes ?? new List<string>()
+                Ingredientes = this.Ingredientes != null ? this.Ingredientes.ToList() : new List<string>()
             };
         }
     }

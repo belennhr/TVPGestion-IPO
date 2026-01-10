@@ -65,5 +65,41 @@ namespace TVPGestion_IPO.Views
                 e.Handled = true;
             }
         }
+
+        private void BtnAgregarIngrediente_Click(object sender, RoutedEventArgs e)
+        {
+            string nuevoIngrediente = TxtNuevoIngrediente.Text.Trim();
+            
+            if (!string.IsNullOrWhiteSpace(nuevoIngrediente))
+            {
+                // Verifica que no exista ya el ingrediente
+                if (!nuevoProducto.Ingredientes.Contains(nuevoIngrediente))
+                {
+                    nuevoProducto.Ingredientes.Add(nuevoIngrediente);
+                    TxtNuevoIngrediente.Clear();
+                    TxtNuevoIngrediente.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("El ingrediente ya existe en la lista", "Ingrediente duplicado", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, introduce un ingrediente válido", "Campo vacío", 
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void BtnEliminarIngrediente_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null && btn.Tag != null)
+            {
+                string ingrediente = btn.Tag.ToString();
+                nuevoProducto.Ingredientes.Remove(ingrediente);
+            }
+        }
     }
 }
