@@ -10,7 +10,7 @@ using TVPGestion_IPO.Services;
 namespace TVPGestion_IPO.Views
 {
     /// <summary>
-    /// Lógica de interacción para ClientesPage.xaml
+    /// Logica de interaccion para ClientesPage.xaml
     /// </summary>
     public partial class ClientesPage : Page
     {
@@ -24,25 +24,12 @@ namespace TVPGestion_IPO.Views
 
             clienteService = new ClienteService();
 
-            // Cargar datos desde archivo
+            // Cargar datos
             var clientesCargados = clienteService.CargarClientes();
             clientesVM = new ObservableCollection<ClienteViewModel>(clientesCargados);
 
-            // Si no hay datos, inicializar con datos de ejemplo (opcional)
-            if (clientesVM.Count == 0)
-            {
-                InicializarDatosEjemplo();
-            }
-
             clientesView = CollectionViewSource.GetDefaultView(clientesVM);
             ClientesDataGrid.ItemsSource = clientesView;
-        }
-
-        private void InicializarDatosEjemplo()
-        {
-            clientesVM.Add(new ClienteViewModel { Nombre = "Juan", Apellidos = "Pérez", DireccionesString = "Calle 1, Ciudad", TelefonosString = "123456789", EmailsString = "juan@mail.com", AlergiasString = "Ninguna", FormaPago = "Tarjeta", PuntosAcumulados = 100 });
-            clientesVM.Add(new ClienteViewModel { Nombre = "Ana", Apellidos = "García", DireccionesString = "Avenida 2, Ciudad", TelefonosString = "987654321", EmailsString = "ana@mail.com", AlergiasString = "Gluten", FormaPago = "Bizum", PuntosAcumulados = 50 });
-            GuardarCambios();
         }
 
         private void GuardarCambios()
@@ -96,8 +83,8 @@ namespace TVPGestion_IPO.Views
             if (cliente == null) return;
 
             var result = MessageBox.Show(
-                $"¿Estás seguro de que quieres eliminar a {cliente.Nombre} {cliente.Apellidos}?",
-                "Confirmar eliminación",
+                $"¿Estas seguro de que quieres eliminar a {cliente.Nombre} {cliente.Apellidos}?",
+                "Confirmar eliminacion",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 

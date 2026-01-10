@@ -46,7 +46,7 @@
                         <TextBox x:Name="SearchBox"
                                  Height="32"
                                  VerticalContentAlignment="Center"
-                                 Padding="32,0,5,0"
+                                 Padding="0,0,5,0"
                                  FontSize="14"
                                  BorderThickness="0"
                                  Background="Transparent"

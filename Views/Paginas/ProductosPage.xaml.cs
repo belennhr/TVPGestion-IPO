@@ -26,25 +26,12 @@ namespace TVPGestion_IPO.Views
 
             productoService = new ProductoService();
 
-            // Cargar datos desde archivo
+            // Cargar datos
             var productosCargados = productoService.CargarProductos();
             productosVM = new ObservableCollection<ProductoViewModel>(productosCargados);
 
-            // Si no hay datos, inicializar con datos de ejemplo (opcional)
-            if (productosVM.Count == 0)
-            {
-                InicializarDatosEjemplo();
-            }
-
             productosView = CollectionViewSource.GetDefaultView(productosVM);
             ProductosDataGrid.ItemsSource = productosView;
-        }
-
-        private void InicializarDatosEjemplo()
-        {
-            productosVM.Add(new ProductoViewModel { Nombre = "Pizza Margarita", Categoria = "Plato", Subcategoria = "Clásica", Foto = "/Assets/Icons/comidaIcon.png", Precio = "8.99", AlergenosString = "Gluten, Lácteos", IngredientesString = "Tomate, Queso, Albahaca" });
-            productosVM.Add(new ProductoViewModel { Nombre = "Hamburguesa", Categoria = "Plato", Subcategoria = "Especial", Foto = "/Assets/Icons/comidaIcon.png", Precio = "6.99", AlergenosString = "Gluten", IngredientesString = "Carne, Queso, Pan" });
-            GuardarCambios();
         }
 
         private void GuardarCambios()

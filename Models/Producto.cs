@@ -20,5 +20,11 @@ namespace TVPGestion_IPO.Models
         public decimal Precio { get; set; }
         public List<string> Alergenos { get; set; }
         public string Subcategoria { get; set; }
+
+        public Producto()
+        {
+            Ingredientes = new List<string>();
+            Alergenos = new List<string>();
+        }
     }
 }

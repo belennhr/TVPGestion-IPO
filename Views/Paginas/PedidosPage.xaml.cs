@@ -21,6 +21,7 @@ namespace TVPGestion_IPO.Views
 
             pedidoService = new PedidoService();
 
+            pedidoService.CargarPedidos();
             // Cargar datos desde archivo
             var pedidosCargados = pedidoService.CargarPedidos();
             pedidosVM = new ObservableCollection<PedidoViewModel>(pedidosCargados);

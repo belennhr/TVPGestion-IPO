@@ -8,30 +8,77 @@ namespace TVPGestion_IPO.Services
 {
     public class ClienteService
     {
-        private readonly DataPersistenceService<ClienteViewModel> persistenceService;
+        private readonly DataPersistenceService<Cliente> persistenceService;
 
         public ClienteService()
         {
-            persistenceService = new DataPersistenceService<ClienteViewModel>("clientes.txt");
+            persistenceService = new DataPersistenceService<Cliente>("clientes.txt");
         }
 
         public List<ClienteViewModel> CargarClientes()
         {
-            return persistenceService.LoadData();
+            var clientesModel = persistenceService.LoadData();
+            
+            // Si no hay datos, inicializar con ejemplos
+            if (clientesModel.Count == 0)
+            {
+                InicializarClientesEjemplo();
+                clientesModel = persistenceService.LoadData();
+            }
+            
+            // Convertir Model a ViewModel
+            return clientesModel.Select(c => ClienteViewModel.FromCliente(c)).ToList();
         }
 
-        public void GuardarClientes(List<ClienteViewModel> clientes)
+        public void GuardarClientes(List<ClienteViewModel> clientesVM)
         {
-            persistenceService.SaveData(clientes);
+            // Convertir ViewModel a Model
+            var clientesModel = clientesVM.Select(vm => vm.ToCliente()).ToList();
+            persistenceService.SaveData(clientesModel);
+        }
+
+        public void InicializarClientesEjemplo()
+        {
+            var clientesEjemplo = new List<Cliente>
+            {
+                new Cliente 
+                { 
+                    Email = "juan@mail.com",
+                    Nombre = "Juan", 
+                    Apellidos = "Perez", 
+                    Direcciones = new List<string> { "Calle Mayor 1, Madrid" },
+                    Telefonos = new List<string> { "123456789" },
+                    Emails = new List<string> { "juan@mail.com" },
+                    Alergias = new List<string> { "Ninguna" },
+                    FormaPago = FormaPagoCliente.Tarjeta, 
+                    PuntosAcumulados = 100 
+                },
+                new Cliente 
+                { 
+                    Email = "ana@mail.com",
+                    Nombre = "Ana", 
+                    Apellidos = "Garcia", 
+                    Direcciones = new List<string> { "Avenida Central 2, Barcelona" },
+                    Telefonos = new List<string> { "987654321" },
+                    Emails = new List<string> { "ana@mail.com" },
+                    Alergias = new List<string> { "Gluten" },
+                    FormaPago = FormaPagoCliente.Bizum, 
+                    PuntosAcumulados = 50 
+                }
+            };
+
+            persistenceService.SaveData(clientesEjemplo);
         }
 
         public void AgregarCliente(ClienteViewModel clienteVM)
         {
-            persistenceService.AddItem(clienteVM);
+            var cliente = clienteVM.ToCliente();
+            persistenceService.AddItem(cliente);
         }
 
-        public void ActualizarCliente(string email, ClienteViewModel clienteActualizado)
+        public void ActualizarCliente(string email, ClienteViewModel clienteVM)
         {
+            var clienteActualizado = clienteVM.ToCliente();
             persistenceService.UpdateItem(
                 c => c.Email == email,
                 clienteActualizado
@@ -49,7 +96,7 @@ namespace TVPGestion_IPO.Services
             return clientes.FirstOrDefault(c => c.Email == email);
         }
 
-        // Procesar puntos usando la lógica del modelo
+        // Procesar puntos usando la logica del modelo
         public void ProcesarPuntosPorPedido(string clienteEmail, decimal importePedido, bool acumularPuntos, bool canjearEnvioGratis)
         {
             var clienteVM = ObtenerClientePorEmail(clienteEmail);
@@ -57,7 +104,7 @@ namespace TVPGestion_IPO.Services
 
             var cliente = clienteVM.ToCliente();
 
-            // Lógica de negocio en el modelo
+            // Logica de negocio en el modelo
             if (canjearEnvioGratis)
             {
                 cliente.CanjearPuntosEnvioGratis();

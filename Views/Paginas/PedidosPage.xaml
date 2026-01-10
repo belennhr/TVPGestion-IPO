@@ -27,8 +27,37 @@
                    FontWeight="Bold"/>
         </Viewbox>
 
-        <!-- Barra de busqueda -->
+        <Grid Grid.Row="1" Margin="28,0,28,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" MinWidth="120"/>
+            </Grid.ColumnDefinitions>
 
+            <!-- Barra de busqueda -->
+            <Viewbox Grid.Column="0" 
+             Stretch="Uniform" 
+             StretchDirection="Both"
+             MaxHeight="40"
+             HorizontalAlignment="Stretch">
+                <Grid Width="300" Height="32">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,0,0">
+                        <TextBox x:Name="SearchBox"
+                         Height="32"
+                         VerticalContentAlignment="Center"
+                         Padding="0,0,5,0"
+                         FontSize="14"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         TextChanged="SearchBox_TextChanged" Margin="30,0,9,-2"/>
+                    </Border>
+                    <materialDesign:PackIcon Kind="Search" Width="24" Height="24" 
+                                     Foreground="Gray"
+                                     Margin="15,0,0,0"
+                                     VerticalAlignment="Center"/>
+                </Grid>
+            </Viewbox>
+        </Grid>
         <!-- DataGrid de pedidos -->
         <DataGrid Grid.Row="2"
                   x:Name="PedidosDataGrid"
@@ -198,27 +227,5 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Viewbox Grid.Column="0" 
-            Stretch="Uniform" 
-            StretchDirection="Both"
-            MaxHeight="40"
-    Margin="25,4,400,10" Grid.Row="1">
-            <Grid Width="300" Height="32">
-                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,0,0">
-                    <TextBox x:Name="SearchBox"
-                        Height="32"
-                        VerticalContentAlignment="Center"
-                        Padding="32,0,5,0"
-                        FontSize="14"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        TextChanged="SearchBox_TextChanged" Margin="30,0,9,-2"/>
-                </Border>
-                <materialDesign:PackIcon Kind="Search" Width="24" Height="24" 
-                    Foreground="Gray"
-                    Margin="15,0,0,0"
-                    VerticalAlignment="Center"/>
-            </Grid>
-        </Viewbox>
     </Grid>
 </Page>
