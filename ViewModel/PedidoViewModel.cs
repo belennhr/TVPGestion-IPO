@@ -1,38 +1,274 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using TVPGestion_IPO.Models;
 
 namespace TVPGestion_IPO.Views
 {
-    public class ProductoCantidadViewModel
+    public class ProductoCantidadViewModel : INotifyPropertyChanged
     {
-        public string Nombre { get; set; }
-        public decimal Precio { get; set; }
-        public int Cantidad { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string nombre;
+        private decimal precio;
+        private int cantidad;
+
+        public string Nombre
+        {
+            get => nombre;
+            set
+            {
+                nombre = value;
+                OnPropertyChanged(nameof(Nombre));
+            }
+        }
+
+        public decimal Precio
+        {
+            get => precio;
+            set
+            {
+                precio = value;
+                OnPropertyChanged(nameof(Precio));
+            }
+        }
+
+        public int Cantidad
+        {
+            get => cantidad;
+            set
+            {
+                cantidad = value;
+                OnPropertyChanged(nameof(Cantidad));
+            }
+        }
+
+        public string DisplayText => $"{Nombre} - {Precio:C}";
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
-    public class PedidoViewModel
+    public class PedidoViewModel : INotifyPropertyChanged
     {
-        public string Id { get; set; }
-        public string FechaHoraRealizacion { get; set; }
-        public string Medio { get; set; } // EnLocal, Telefono
-        public string Modalidad { get; set; } // RecogerAhora, RecogerHora, Domicilio
-        public string FechaHoraRecogida { get; set; }
-        public string ClienteEmail { get; set; } // Email del cliente (ID)
-        public string ProductosString { get; set; } // Resumen: "Pizza x2, Refresco x1"
-        public decimal ImporteTotal { get; set; }
-        public string FormaPago { get; set; }
-        public string Estado { get; set; } // EnElaboracion, Entregado, Recogido, Pagado, PendientePago
-        public string DireccionEntrega { get; set; }
-        public decimal CosteEnvio { get; set; }
-        public bool EnvioGratisCanjeado { get; set; }
-        public bool AcumularPuntos { get; set; } = true;
-        public int PuntosGanados { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string id;
+        private string fechaHoraRealizacion;
+        private string medio;
+        private string modalidad;
+        private string fechaHoraRecogida;
+        private string clienteEmail;
+        private string productosString;
+        private decimal importeTotal;
+        private string formaPago;
+        private string estado;
+        private string direccionEntrega;
+        private decimal costeEnvio;
+        private bool envioGratisCanjeado;
+        private bool acumularPuntos;
+        private int puntosGanados;
+        private ObservableCollection<ProductoCantidadViewModel> productos;
+        private ObservableCollection<ProductoCantidadViewModel> productosDisponibles;
+
+        public string Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
+        public string FechaHoraRealizacion
+        {
+            get => fechaHoraRealizacion;
+            set
+            {
+                fechaHoraRealizacion = value;
+                OnPropertyChanged(nameof(FechaHoraRealizacion));
+            }
+        }
+
+        public string Medio
+        {
+            get => medio;
+            set
+            {
+                medio = value;
+                OnPropertyChanged(nameof(Medio));
+            }
+        }
+
+        public string Modalidad
+        {
+            get => modalidad;
+            set
+            {
+                modalidad = value;
+                OnPropertyChanged(nameof(Modalidad));
+            }
+        }
+
+        public string FechaHoraRecogida
+        {
+            get => fechaHoraRecogida;
+            set
+            {
+                fechaHoraRecogida = value;
+                OnPropertyChanged(nameof(FechaHoraRecogida));
+            }
+        }
+
+        public string ClienteId
+        {
+            get => clienteEmail;
+            set
+            {
+                clienteEmail = value;
+                OnPropertyChanged(nameof(ClienteId));
+            }
+        }
+
+        public string ClienteEmail
+        {
+            get => clienteEmail;
+            set
+            {
+                clienteEmail = value;
+                OnPropertyChanged(nameof(ClienteEmail));
+            }
+        }
+
+        public string ProductosString
+        {
+            get => productosString;
+            set
+            {
+                productosString = value;
+                OnPropertyChanged(nameof(ProductosString));
+            }
+        }
+
+        public decimal ImporteTotal
+        {
+            get => importeTotal;
+            set
+            {
+                importeTotal = value;
+                OnPropertyChanged(nameof(ImporteTotal));
+            }
+        }
+
+        public string FormaPago
+        {
+            get => formaPago;
+            set
+            {
+                formaPago = value;
+                OnPropertyChanged(nameof(FormaPago));
+            }
+        }
+
+        public string Estado
+        {
+            get => estado;
+            set
+            {
+                estado = value;
+                OnPropertyChanged(nameof(Estado));
+            }
+        }
+
+        public string DireccionEntrega
+        {
+            get => direccionEntrega;
+            set
+            {
+                direccionEntrega = value;
+                OnPropertyChanged(nameof(DireccionEntrega));
+            }
+        }
+
+        public decimal CosteEnvio
+        {
+            get => costeEnvio;
+            set
+            {
+                costeEnvio = value;
+                OnPropertyChanged(nameof(CosteEnvio));
+            }
+        }
+
+        public bool EnvioGratisCanjeado
+        {
+            get => envioGratisCanjeado;
+            set
+            {
+                envioGratisCanjeado = value;
+                OnPropertyChanged(nameof(EnvioGratisCanjeado));
+            }
+        }
+
+        public bool AcumularPuntos
+        {
+            get => acumularPuntos;
+            set
+            {
+                acumularPuntos = value;
+                OnPropertyChanged(nameof(AcumularPuntos));
+            }
+        }
+
+        public int PuntosGanados
+        {
+            get => puntosGanados;
+            set
+            {
+                puntosGanados = value;
+                OnPropertyChanged(nameof(PuntosGanados));
+            }
+        }
 
         // Lista editable de productos y cantidades
-        public ObservableCollection<ProductoCantidadViewModel> Productos { get; } = new ObservableCollection<ProductoCantidadViewModel>();
+        public ObservableCollection<ProductoCantidadViewModel> Productos
+        {
+            get => productos;
+            set
+            {
+                if (productos != null)
+                {
+                    productos.CollectionChanged -= Productos_CollectionChanged;
+                }
+
+                productos = value;
+
+                if (productos != null)
+                {
+                    productos.CollectionChanged += Productos_CollectionChanged;
+                }
+
+                OnPropertyChanged(nameof(Productos));
+                ActualizarProductosString();
+            }
+        }
+
+        // Lista de todos los productos disponibles para el ComboBox
+        public ObservableCollection<ProductoCantidadViewModel> ProductosDisponibles
+        {
+            get => productosDisponibles;
+            set
+            {
+                productosDisponibles = value;
+                OnPropertyChanged(nameof(ProductosDisponibles));
+            }
+        }
 
         // Listas estáticas para ComboBoxes
         public static List<string> MediosDisponibles => 
@@ -43,6 +279,62 @@ namespace TVPGestion_IPO.Views
 
         public static List<string> EstadosDisponibles => 
             Enum.GetNames(typeof(EstadoPedido)).ToList();
+
+        public PedidoViewModel()
+        {
+            Productos = new ObservableCollection<ProductoCantidadViewModel>();
+            ProductosDisponibles = new ObservableCollection<ProductoCantidadViewModel>();
+            AcumularPuntos = true;
+        }
+
+        private void Productos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // Suscribirse a cambios en las propiedades de los productos añadidos
+            if (e.NewItems != null)
+            {
+                foreach (ProductoCantidadViewModel producto in e.NewItems)
+                {
+                    producto.PropertyChanged += Producto_PropertyChanged;
+                }
+            }
+
+            // Desuscribirse de productos eliminados
+            if (e.OldItems != null)
+            {
+                foreach (ProductoCantidadViewModel producto in e.OldItems)
+                {
+                    producto.PropertyChanged -= Producto_PropertyChanged;
+                }
+            }
+
+            ActualizarProductosString();
+        }
+
+        private void Producto_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Actualizar cuando cambie la cantidad de un producto
+            if (e.PropertyName == nameof(ProductoCantidadViewModel.Cantidad))
+            {
+                ActualizarProductosString();
+            }
+        }
+
+        private void ActualizarProductosString()
+        {
+            if (Productos != null && Productos.Count > 0)
+            {
+                ProductosString = string.Join(", ", Productos.Select(p => $"{p.Nombre} x{p.Cantidad}"));
+            }
+            else
+            {
+                ProductosString = "";
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // Método de conversión Model → ViewModel
         public static PedidoViewModel FromPedido(Pedido pedido)
@@ -55,7 +347,6 @@ namespace TVPGestion_IPO.Views
                 Modalidad = pedido.Modalidad.ToString(),
                 FechaHoraRecogida = pedido.FechaHoraRecogida?.ToString("g") ?? "",
                 ClienteEmail = pedido.ClienteEmail,
-                ProductosString = string.Join(", ", pedido.Productos.Select(p => $"{p.Key.Nombre} x{p.Value}")),
                 ImporteTotal = pedido.ImporteTotal,
                 FormaPago = pedido.FormaPago,
                 Estado = pedido.Estado.ToString(),

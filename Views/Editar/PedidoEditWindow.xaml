@@ -90,14 +90,88 @@
                     <!-- Columna derecha -->
                     <StackPanel x:Name="stackDer" Grid.Column="2">
                         <!-- Productos -->
-                        <StackPanel Margin="0,0,0,12">
+                        <StackPanel x:Name="stackProductos" Margin="0,0,0,12">
                             <Label Content="Productos" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
-                            <TextBox x:Name="TxtProductos" 
-                                     Style="{StaticResource RoundedTextBox}"
-                                     AcceptsReturn="True"
-                                     TextWrapping="Wrap"
-                                     Height="60"
-                                     Text="{Binding ProductosString, UpdateSourceTrigger=PropertyChanged}"/>
+                            
+                            <!-- Selector de producto y cantidad -->
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <ComboBox x:Name="CmbProductos" 
+                                          Grid.Column="0"
+                                          Height="36"
+                                          FontSize="14"
+                                          VerticalContentAlignment="Center"
+                                          ItemsSource="{Binding ProductosDisponibles}"
+                                          DisplayMemberPath="DisplayText"
+                                          SelectedIndex="0"/>
+                                
+                                <TextBox x:Name="TxtCantidad" 
+                                         Grid.Column="2"
+                                         Style="{StaticResource RoundedTextBox}"
+                                         Text="1"
+                                         TextAlignment="Center"
+                                         PreviewTextInput="TxtCantidad_PreviewTextInput"/>
+                                
+                                <Button x:Name="BtnAgregarProducto" 
+                                        Grid.Column="4"
+                                        Content="+" 
+                                        Width="36" 
+                                        Height="36"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Background="#065386" 
+                                        Foreground="White"
+                                        BorderBrush="#065386"
+                                        Style="{StaticResource RoundedButton}"
+                                        Click="BtnAgregarProducto_Click"/>
+                            </Grid>
+                            
+                            <!-- Lista de productos del pedido -->
+                            <ListBox x:Name="ListProductosPedido" 
+                                     Height="120"
+                                     ItemsSource="{Binding Productos}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" 
+                                                       VerticalAlignment="Center"
+                                                       Margin="5,0,0,0">
+                                                <Run Text="{Binding Nombre}" FontWeight="Bold"/>
+                                                <Run Text=" x" Foreground="#6c757d"/>
+                                                <Run Text="{Binding Cantidad}" Foreground="#065386" FontWeight="Bold"/>
+                                                <Run Text=" - " Foreground="#6c757d"/>
+                                                <Run Text="{Binding Precio, StringFormat='{}{0:C}'}" Foreground="#28a745"/>
+                                            </TextBlock>
+                                            
+                                            <Button Grid.Column="2" 
+                                                    Content="x" 
+                                                    Width="24" 
+                                                    Height="24"
+                                                    FontSize="16"
+                                                    Background="#dc3545" 
+                                                    Foreground="White"
+                                                    BorderBrush="#dc3545"
+                                                    Padding="0,0,0,4"
+                                                    Margin="5,0,0,0"
+                                                    Click="BtnEliminarProducto_Click"
+                                                    Tag="{Binding}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </StackPanel>
 
                         <!-- Importe Total -->
@@ -105,7 +179,8 @@
                             <Label Content="Importe Total" FontWeight="Bold" Foreground="#065386" Padding="0,0,0,5"/>
                             <TextBox x:Name="TxtImporteTotal" 
                                      Style="{StaticResource RoundedTextBox}"
-                                     Text="{Binding ImporteTotal, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding ImporteTotal, UpdateSourceTrigger=PropertyChanged}"
+                                     IsReadOnly="True"/>
                         </StackPanel>
 
                         <!-- Forma Pago -->

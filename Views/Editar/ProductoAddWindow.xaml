@@ -139,7 +139,7 @@
                                                     Background="#dc3545" 
                                                     Foreground="White"
                                                     BorderBrush="#dc3545"
-                                                    Padding="0"
+                                                    Padding="0,0,0,4"
                                                     Margin="5,0,0,0"
                                                     Click="BtnEliminarIngrediente_Click"
                                                     Tag="{Binding}"/>
