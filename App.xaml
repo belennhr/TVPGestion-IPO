@@ -128,6 +128,25 @@
 
             <Style TargetType="ComboBox" BasedOn="{StaticResource ModerCombobox}"/>
 
+            <!--Estilo Scroll-->
+            <Style x:Key="CustomScrollBarStyle" TargetType="{x:Type ScrollBar}">
+                <Setter Property="Background" Value="#E0E0E0"/>
+                <Setter Property="Foreground" Value="#065386"/>
+                <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                <Setter Property="Width" Value="14"/>
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="Width" Value="Auto"/>
+                        <Setter Property="Height" Value="14"/>
+                    </Trigger>
+                    <Trigger Property="Orientation" Value="Vertical">
+                        <Setter Property="Width" Value="5"/>
+                        <Setter Property="Height" Value="auto"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="ScrollBar" BasedOn="{StaticResource  CustomScrollBarStyle}"/>
 
 
         </ResourceDictionary>

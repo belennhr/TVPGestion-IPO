@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*" MinWidth="150" MaxWidth="200"/>
+            <ColumnDefinition Width="0.2*" MinWidth="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -90,12 +90,21 @@
                                                  Width="70" Height="70"
                                                  HorizontalAlignment="Center"/>
                     </Viewbox>
-                    <TextBlock x:Name="lblNombreUsuario" Text="Nombre Usuario" 
-                               FontSize="14" FontWeight="Bold"
-                               HorizontalAlignment="Center"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               Margin="5,0,5,10"/>
+            
+                    <!-- Envolver el nombre de usuario en Viewbox -->
+                    <Viewbox MaxHeight="25" Margin="5,0,5,10" 
+                             Stretch="Uniform" 
+                             StretchDirection="DownOnly">
+                        <TextBlock x:Name="lblNombreUsuario" 
+                                   Text="Nombre Usuario" 
+                                   FontSize="16" 
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="NoWrap"
+                                   TextAlignment="Center"
+                                   Padding="5,0"/>
+                    </Viewbox>
+            
                     <Separator Margin="0,0,0,10" Background="Gray"/>
                 </StackPanel>
 
@@ -146,16 +155,28 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Food" 
-                                                     Grid.Column="0"
-                                                     Width="25" Height="25" 
-                                                     Margin="0,0,10,0"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock Text="Productos" 
-                                       Grid.Column="1"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"/>
+                            
+                            <!-- Icono con Viewbox -->
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Food" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <!-- Texto con Viewbox -->
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock Text="Productos" 
+                                           FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"/>
+                            </Viewbox>
                         </Grid>
                     </ListBoxItem>
 
@@ -165,16 +186,26 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Cart" 
-                                                     Grid.Column="0"
-                                                     Width="25" Height="25" 
-                                                     Margin="0,0,10,0"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock Text="Pedidos" 
-                                       Grid.Column="1"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"/>
+                            
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Cart" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock Text="Pedidos" 
+                                           FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"/>
+                            </Viewbox>
                         </Grid>
                     </ListBoxItem>
 
@@ -184,16 +215,26 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="AccountMultiple" 
-                                                     Grid.Column="0"
-                                                     Width="25" Height="25" 
-                                                     Margin="0,0,10,0"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock Text="Clientes" 
-                                       Grid.Column="1"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"/>
+                            
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="AccountMultiple" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock Text="Clientes" 
+                                           FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"/>
+                            </Viewbox>
                         </Grid>
                     </ListBoxItem>
                 </ListBox>
@@ -243,16 +284,26 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="AccountCogOutline" 
-                                                     Grid.Column="0"
-                                                     Width="25" Height="25" 
-                                                     Margin="0,0,10,0"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock Text="Editar Perfil" 
-                                       Grid.Column="1"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"/>
+                            
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="AccountCogOutline" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock Text="Editar Perfil" 
+                                           FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"/>
+                            </Viewbox>
                         </Grid>
                     </Button>
 
@@ -299,39 +350,49 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="info" 
-                                                     Grid.Column="0"
-                                                     Width="25" Height="25" 
-                                                     Margin="0,0,10,0"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock 
-                                       Grid.Column="1"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       TextWrapping="Wrap"><Run Language="es-es" Text="Información"/></TextBlock>
+                            
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="info" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"><Run Language="es-es" Text="Información"/></TextBlock>
+                            </Viewbox>
                         </Grid>
                     </Button>
+
                     <Button x:Name="btnLogout_Copiar" 
-                        Click="btnLogout_Click"
-                        Padding="10,8"
-                        HorizontalContentAlignment="Stretch"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Foreground="Black"
-                        Cursor="Hand">
+                            Click="btnLogout_Click"
+                            Padding="10,8"
+                            HorizontalContentAlignment="Stretch"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Foreground="Black"
+                            Cursor="Hand">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
                                             <Border x:Name="border"
-                                                Background="{TemplateBinding Background}"
-                                                BorderThickness="0"
-                                                CornerRadius="5"
-                                                Padding="{TemplateBinding Padding}"
-                                                Margin="{TemplateBinding Margin}">
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    CornerRadius="5"
+                                                    Padding="{TemplateBinding Padding}"
+                                                    Margin="{TemplateBinding Margin}">
                                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                    VerticalAlignment="Center"/>
+                                                                  VerticalAlignment="Center"/>
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
@@ -353,16 +414,26 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Logout" 
-                                Grid.Column="0"
-                                Width="25" Height="25" 
-                                Margin="0,0,10,0"
-                                VerticalAlignment="Center"/>
-                            <TextBlock Text="Log out" 
-                                Grid.Column="1"
-                                FontSize="14"
-                                VerticalAlignment="Center"
-                                TextWrapping="Wrap"/>
+                            
+                            <Viewbox Grid.Column="0" 
+                                     MaxHeight="30" MaxWidth="30"
+                                     Margin="0,0,10,0"
+                                     VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Logout" 
+                                                         Width="25" Height="25"/>
+                            </Viewbox>
+                            
+                            <Viewbox Grid.Column="1" 
+                                     MaxHeight="20"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center">
+                                <TextBlock Text="Log out" 
+                                           FontSize="16"
+                                           TextWrapping="NoWrap"
+                                           Padding="2"/>
+                            </Viewbox>
                         </Grid>
                     </Button>
                 </StackPanel>
