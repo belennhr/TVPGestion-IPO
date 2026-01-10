@@ -121,12 +121,14 @@
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="Height" Value="Auto"/>
                     <Setter Property="MinHeight" Value="40"/>
+                    <Setter Property="Width" Value="auto"/>
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Padding" Value="5"/>
+                    <Setter Property="FontSize" Value="18"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="DataGridCell">
