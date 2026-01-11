@@ -16,7 +16,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Título -->
         <Viewbox Grid.Row="0" 
                  Stretch="Uniform" 
                  HorizontalAlignment="Left"
@@ -27,7 +26,6 @@
                    FontWeight="Bold"/>
         </Viewbox>
 
-        <!-- Barra de búsqueda y botón añadir -->
         <Grid Grid.Row="1" Margin="28,0,28,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="200"/>
@@ -35,12 +33,11 @@
                 <ColumnDefinition Width="Auto" MinWidth="120"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Barra de búsqueda -->
             <Viewbox Grid.Column="0" 
-                     Stretch="Uniform" 
-                     StretchDirection="Both"
-                     MaxHeight="40"
-                     HorizontalAlignment="Stretch">
+                      Stretch="Uniform" 
+                      StretchDirection="Both"
+                      MaxHeight="40"
+                      HorizontalAlignment="Stretch">
                 <Grid Width="300" Height="32">
                     <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Background="White" Margin="10,0,0,0">
                         <TextBox x:Name="SearchBox"
@@ -59,12 +56,11 @@
                 </Grid>
             </Viewbox>
 
-            <!-- Botón añadir producto -->
             <Viewbox Grid.Column="2"
-                     Stretch="Uniform"
-                     StretchDirection="Both"
-                     MaxHeight="40"
-                     HorizontalAlignment="Stretch">
+                      Stretch="Uniform"
+                      StretchDirection="Both"
+                      MaxHeight="40"
+                      HorizontalAlignment="Stretch">
                 <Button x:Name="BtnAddProducto"
                         Width="157" Height="32"
                         Click="BtnAddProducto_Click"
@@ -85,7 +81,6 @@
             </Viewbox>
         </Grid>
 
-        <!-- DataGrid de productos -->
         <DataGrid Grid.Row="2"
                   x:Name="ProductosDataGrid"
                   Margin="40,28,28,40"
@@ -105,7 +100,7 @@
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="Auto"/>
-                    <Setter Property="MinHeight" Value="35"/>
+                    <Setter Property="MinHeight" Value="60"/>
                 </Style>
             </DataGrid.RowStyle>
 
@@ -143,7 +138,6 @@
             </DataGrid.CellStyle>
 
             <DataGrid.Columns>
-                <!--Editar Productos-->
                 <DataGridTemplateColumn x:Name="Editar" Header="" Width="50" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -173,7 +167,6 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <!--Borrar Productos-->
                 <DataGridTemplateColumn Header="" Width="50" MinWidth="40">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -203,7 +196,18 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <!-- Campos especificos con TextWrapping para mejor responsive -->
+                <DataGridTemplateColumn Header="Foto" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Width="60" Height="50" CornerRadius="5" ClipToBounds="True" Background="#EEE" HorizontalAlignment="Left">
+                                <Image Source="{Binding Foto}" 
+                                       Stretch="UniformToFill" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto" MinWidth="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -231,7 +235,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="auto" MinWidth="80">
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat={}{0:C}}" Width="auto" MinWidth="80">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="Padding" Value="5"/>
@@ -248,7 +252,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Ingredientes" Binding="{Binding IngredientesString}" Width="auto" MinWidth="120">
+                <DataGridTextColumn Header="Ingredientes" Binding="{Binding IngredientesString}" Width="*" MinWidth="120">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="TextWrapping" Value="Wrap"/>
