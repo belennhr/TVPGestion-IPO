@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel; // Necesario para la lista dinámica
 using System.Linq;
 using TVPGestion_IPO.Models;
 
 namespace TVPGestion_IPO.Views
 {
+    // Clase auxiliar para la fila de la tabla
     public class PedidoResumenViewModel
     {
         public string Id { get; set; }
@@ -16,7 +18,7 @@ namespace TVPGestion_IPO.Views
 
     public class ClienteViewModel
     {
-        public string Email { get; set; } // ID único del cliente
+        public string Email { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string DireccionesString { get; set; }
@@ -27,16 +29,16 @@ namespace TVPGestion_IPO.Views
         public int PuntosAcumulados { get; set; }
         public int PuntosCanjeados { get; set; }
         public int PuntosDisponibles => PuntosAcumulados - PuntosCanjeados;
-        public string HistorialPedidosIds { get; set; } // IDs separados por coma
+        public string HistorialPedidosIds { get; set; }
 
-        // NUEVO: historial de pedidos para UI
-        public List<PedidoResumenViewModel> HistorialPedidos { get; set; } = new List<PedidoResumenViewModel>();
+        // ESTA ES LA LISTA CLAVE: La iniciamos vacía y del tipo correcto
+        public ObservableCollection<PedidoResumenViewModel> HistorialPedidos { get; set; }
+            = new ObservableCollection<PedidoResumenViewModel>();
 
-        // Lista estática para ComboBox
-        public static List<string> FormasPagoDisponibles => 
+        public static List<string> FormasPagoDisponibles =>
             Enum.GetNames(typeof(FormaPagoCliente)).ToList();
 
-        // Conversión Model → ViewModel
+        // Conversión Model -> ViewModel
         public static ClienteViewModel FromCliente(Cliente cliente)
         {
             return new ClienteViewModel
@@ -51,19 +53,14 @@ namespace TVPGestion_IPO.Views
                 FormaPago = cliente.FormaPago.ToString(),
                 PuntosAcumulados = cliente.PuntosAcumulados,
                 PuntosCanjeados = cliente.PuntosCanjeados,
-                HistorialPedidosIds = string.Join(", ", cliente.HistorialPedidos.Select(p => p.Id)),
-                HistorialPedidos = cliente.HistorialPedidos?.Select(p => new PedidoResumenViewModel
-                {
-                    Id = p.Id,
-                    Fecha = p.FechaHoraRealizacion.ToString("g"),
-                    Estado = p.Estado.ToString(),
-                    ImporteTotal = p.ImporteTotal,
-                    FormaPago = p.FormaPago
-                }).ToList() ?? new List<PedidoResumenViewModel>()
+                HistorialPedidosIds = "", // Lo dejamos limpio por ahora
+
+                // CORRECCIÓN IMPORTANTE: Dejamos la lista vacía aquí.
+                // La llenaremos en la página principal cruzando los datos.
+                HistorialPedidos = new ObservableCollection<PedidoResumenViewModel>()
             };
         }
 
-        // Conversión ViewModel → Model
         public Cliente ToCliente()
         {
             return new Cliente
@@ -78,8 +75,7 @@ namespace TVPGestion_IPO.Views
                 FormaPago = (FormaPagoCliente)Enum.Parse(typeof(FormaPagoCliente), this.FormaPago),
                 PuntosAcumulados = this.PuntosAcumulados,
                 PuntosCanjeados = this.PuntosCanjeados,
-                // HistorialPedidos se gestiona desde servicios; aquí se deja vacío para evitar duplicados
-                HistorialPedidos = new List<Pedido>()
+                HistorialPedidos = new List<Pedido>() // Se queda vacío al guardar para no duplicar datos
             };
         }
     }
