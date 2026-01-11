@@ -127,14 +127,14 @@ namespace TVPGestion_IPO.Views
             else if (navframe.Content is ClientesPage)
             {
                 txtHelpContent.Text = "Estás en GESTIÓN DE CLIENTES.\n\n" +
-                                      "• Busca clientes por teléfono o nombre.\n" +
-                                      "• Gestiona aquí sus puntos de fidelidad.";
+                                      "• Busca clientes por cualquier caracteristica.\n" +
+                                      "• Gestiona aquí sus datos, edita , gorra o crea.";
             }
             else if (navframe.Content is PedidosPage)
             {
                 txtHelpContent.Text = "Estás en PEDIDOS.\n\n" +
-                                      "• Selecciona un cliente primero.\n" +
-                                      "• Añade productos al carrito y finaliza la venta.";
+                                      "• Podras ver los pedidos creados, editarlos o borrarlos\n" +
+                                      "• Puedes buscar un pedido en la barra de búsqueda.";
             }
             else if (navframe.Content is EditarPerfilWindow) // O la página de perfil si es Page
             {
